@@ -7,6 +7,7 @@ use App\Http\Controllers\SppdController;
 use App\Http\Controllers\BiayaController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\PdfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,11 @@ Route::get('registration', [AuthController::class, 'registration'])->name('regis
 Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post');
 Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+// pdf
+Route::get('/pdf1', [PdfController::class, 'index']);
+Route::get('/pdf2', [PdfController::class, 'pdf2']);
+Route::get('/pdf3', [PdfController::class, 'pdf3']);
 
 // contact me
 Route::get('contact-us', [ContactController::class, 'index']);
