@@ -28,11 +28,18 @@
         <ul class="navbar-nav ms-auto">
             @guest
                 <li class="nav-item ">
-                    <a class="nav-link " href="{{ route('login') }}"><span class="text-primary fw-bold">Login</span></a>
+                    <a class="nav-link " href="{{ route('login') }}">
+                        <button type="button" class="btn btn-success">
+                            MASUK
+                        </button>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}"><span
-                            class="text-warning fw-bold">Register</span></a>
+                    <a class="nav-link" href="{{ route('register') }}">
+                        <button type="button" class="btn btn-outline-secondary">
+                            DAFTAR
+                        </button>
+                    </a>
                 </li>
             @else
                 <li class="nav-item dropdown d-none d-lg-block user-dropdown">
