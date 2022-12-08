@@ -11,9 +11,8 @@
                         </div>
                         <div>
                             <a href="{{ route('pegawai.index') }}">
-                                <button type="button" class="btn btn-social-icon-text btn-dark">
+                                <button type="button" class="btn btn-dark">
                                     <i class="mdi mdi-arrow-left"></i>
-                                    Kembali
                                 </button>
                             </a>
                         </div>
@@ -57,7 +56,9 @@
                                     placeholder="Tulis Golongan Pegawai">
                             </div>
                     </div>
-                    <button type="submit" class="btn btn-primary me-2">Tambah</button>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary me-2">Tambah</button>
+                    </div>
                 </div>
                 </form>
             </div>

@@ -107,29 +107,26 @@
                             </div>
                             <div class="row">
                                 <div class="col-md grid-margin">
-                                    <div>
-                                        <div class="d-sm-flex justify-content-between align-items-center">
-                                            <div>
-                                                <label for=pengikut>Pengikut</label>
-                                            </div>
-                                            <div>
-                                                <button id="add-pengikut-button" type="button" class="btn btn-success">
-                                                    <i class="mdi mdi-plus"></i>
-                                                    <!-- Tambah Pengikut -->
-                                                </button>
-                                            </div>
+                                    <div class="d-sm-flex justify-content-between align-items-center">
+                                        <div>
+                                            <label for=pengikut>Pengikut</label>
                                         </div>
-                                        <div id="pengikut-wrapper">
-                                            <div class="form-group">
-                                                <label>Pengikut 1</label>
-                                                <select class="js-example-basic-multiple w-100" name="pengikut[]"
-                                                    id="pengikut">
-                                                    <option value="">Pilih Salah Satu</option>
-                                                    @foreach ($sppd as $s)
-                                                        <option value="{{ $s->id }}">{{ $s->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                        <div>
+                                            <button id="add-pengikut-button" type="button" class="btn btn-success">
+                                                <i class="mdi mdi-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div id="pengikut-wrapper">
+                                        <div class="form-group">
+                                            <label>Pengikut 1</label>
+                                            <select class="js-example-basic-multiple w-100" name="pengikut[]"
+                                                id="pengikut">
+                                                <option value="">Pilih Salah Satu</option>
+                                                @foreach ($sppd as $s)
+                                                    <option value="{{ $s->id }}">{{ $s->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     

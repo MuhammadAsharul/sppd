@@ -16,7 +16,7 @@
                     @guest()
                     @else
                         <a href="{{ route('pegawai.create') }}">
-                            <button type="button" class="btn btn-dark btn-md">
+                            <button type="button" class="btn btn-success btn-md">
                                 Tambah Data
                             </button>
                         </a>
@@ -27,13 +27,13 @@
                 <table class="table table-striped table-bordered" id="pegawai">
                     <thead>
                         <tr>
-                            <th>No</td>
-                            <th>NIP</td>
-                            <th>Nama</td>
-                            <th>Jabatan</td>
-                            <th>Pangkat</td>
-                            <th>Golongan</td>
-                            <th width="280px">Aksi</th>
+                            <th>No</th>
+                            <th>NIP</th>
+                            <th>Nama</th>
+                            <th>Jabatan</th>
+                            <th>Pangkat</th>
+                            <th>Golongan</th>
+                            <th width="170px">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
