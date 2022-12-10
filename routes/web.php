@@ -7,6 +7,9 @@ use App\Http\Controllers\SppdController;
 use App\Http\Controllers\BiayaController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PegawaiController;
+
+use App\Http\Controllers\DashboardController;
+
 use App\Http\Controllers\PdfController;
 
 /*
@@ -34,8 +37,8 @@ Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard')
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 // pdf
-Route::get('/pdf1', [PdfController::class, 'index']);
-Route::get('/pdf2', [PdfController::class, 'pdf2']);
+Route::get('/pdf1/{id}', [PdfController::class, 'index']);
+Route::get('/pdf2/{id}', [PdfController::class, 'pdf2']);
 Route::get('/pdf3', [PdfController::class, 'pdf3']);
 
 // contact me
@@ -46,3 +49,10 @@ Route::resource('pegawai', PegawaiController::class);
 Route::resource('sppd', SppdController::class);
 Route::resource('spt', SptController::class);
 Route::resource('biaya', BiayaController::class);
+
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+
+// logActivity
+Route::get('add-to-log', 'App\Http\Controllers\LogActivityController@myTestAddToLog');
+Route::get('log-activity', 'App\Http\Controllers\LogActivityController@logActivity');

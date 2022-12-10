@@ -2,20 +2,20 @@
 
 namespace App\Models;
 
-use App\Models\Pegawai;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Pegawai;
 
 class Biaya extends Model
 {
     use HasFactory;
-    /**
-     * Get the user that owns the Biaya
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function pegawai()
+    protected $fillable = ['id', 'kegiatan', 'lokasi', 'hari_tgl', 'rekening', 'uang_harian', 'uang_transport', 'biaya_transport'];
+    public function namaa()
     {
-        return $this->belongsTo(Pegawai::class);
+        return $this->belongsToMany(Pegawai::class, 'id', 'biaya_namas');
     }
+    // public function pegawai()
+    // {
+    //     return $this->belongsToMany(Pegawai::class,);
+    // }
 }

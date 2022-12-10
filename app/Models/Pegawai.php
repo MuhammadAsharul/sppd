@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Sppd;
+use App\Models\Spt;
+use App\Models\Biaya;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -26,5 +28,14 @@ class Pegawai extends Model
     public function diperintahpd()
     {
         return $this->hasMany(Sppd::class, 'pejabat_diperintah');
+    }
+
+    public function menetapkanpt()
+    {
+        return $this->hasMany(Spt::class, 'yang_menetapkan');
+    }
+    public function biayas()
+    {
+        return $this->hasMany(Biaya::class);
     }
 }

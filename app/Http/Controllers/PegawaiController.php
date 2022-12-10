@@ -17,7 +17,7 @@ class PegawaiController extends Controller
         $pegawai = Pegawai::latest()->paginate(10);
 
         return view('pages.pegawai', compact('pegawai'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+            ->with('i', (request()->input('page', 1) - 1) * 50);
     }
 
     /**

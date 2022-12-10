@@ -13,8 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('spts', function (Blueprint $table) {
+        Schema::create('log_activity', function (Blueprint $table) {
             $table->id();
+            $table->string('subject');
+            $table->string('url');
+            $table->string('method');
+            $table->string('agent')->nullable();
+            $table->string('user_id')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('spts');
+        Schema::dropIfExists('log_activity');
     }
 };

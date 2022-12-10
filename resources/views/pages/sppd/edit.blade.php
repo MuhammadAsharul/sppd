@@ -33,14 +33,14 @@
                             @method('PUT')
                             <div class="row">
                                 <div class="col-md-6 grid-margin">
-                                    {{-- <div class="form-group">
+                                    <div class="form-group">
                                         <label for="pejabat_pemerintah">Pejabat Pemberi Perintah</label>
                                         <select class="js-example-basic-multiple w-100 form-control"
                                             name="pejabat_pemerintah" id="pejabat_pemerintah">
-                                            <option value="{{ $sppd->pemerintah->id }}">{{ $sppd->pemerintah->name }}
-                                            </option>
-                                            @foreach ($sppd as $s)
-                                                <option value="{{ $s->id }}">{{ $s->name }}</option>
+                                            {{-- <option value="">Pilih Salah Satu</option> --}}
+                                            @foreach ($pegawai as $s)
+                                            <option {{ $s->id == $sppd->pejabat_pemerintah ? 'selected' : ''}} value="{{ $s->id }}" class="text-dark">{{$s->name}}</option>
+                                                {{-- <option value="{{ $s->id === $sppd->id? 'selected' : null }}">{{ $s->name }}</option> --}}
                                             @endforeach
                                         </select>
                                     </div>
@@ -48,12 +48,13 @@
                                         <label for="pejabat_diperintah">Pegawai yang Diperintah</label>
                                         <select class="js-example-basic-multiple w-100"name="pejabat_diperintah"
                                             id="pejabat_diperintah">
-                                            <option value="">Pilih Salah Satu</option>
-                                            @foreach ($sppd as $s)
-                                                <option value="{{ $s->id }}">{{ $s->name }}</option>
+                                            @foreach ($pegawai as $s)
+                                            <option {{ $s->id == $sppd->pejabat_diperintah? 'selected' : ''}}  value="{{ $s->id }}" class="text-dark">{{$s->name}}</option>
+                                            {{-- <option value="{{ $s->id === $sppd->id? 'selected' : null }}">{{ $s->name }}</option> --}}
+                                                {{-- <option   value="{{ $s->id }}">{{ $s->name }}</option> --}}
                                             @endforeach
                                         </select>
-                                    </div> --}}
+                                    </div>
                                     <div class="form-group">
                                         <label for="tempat_berangkat">Tempat Berangkat</label>
                                         <input type="text" class="form-control" id="tempat_berangkat"
@@ -72,29 +73,66 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="transportasi">Transportasi</label>
-                                        <input type="text" class="form-control" id="transportasi" name="transportasi"
+                                        <input value="{{ $sppd->transportasi }}" type="text" class="form-control" id="transportasi" name="transportasi"
                                             placeholder="Tulis Transportasi yang Digunakan">
+                                    </div>
+                                    <div>
+                                        <div>Pengikut</div>
+                                        <div id="pengikut-wrapper">
+                                            @foreach ($sppd->pengikut()->get() as $item)
+                                                <div class="form-group">
+                                                    <label>Pengikut {{ $loop->iteration }}</label>
+                                                    <select class="js-example-basic-multiple w-100" name="pengikut[]"
+                                                        id="pengikut">
+                                                        <option value="">Pilih Salah Satu</option>
+                                                        @foreach ($pegawai as $s)
+                                                            <option {{ $s->id === $item->id ? 'selected' : null }}
+                                                                value="{{ $s->id }}">{{ $s->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <button id="add-pengikut-button" type="button">
+                                            Tambah pengikut
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="col-md-6 grid-margin">
                                     <div class="form-group">
+<<<<<<< HEAD
+                                        <label for="tempat_berangkat">Tempat Berangkat</label>
+                                        <input value="{{ $sppd->tempat_berangkat }}" type="text" class="form-control" id="tempat_berangkat"
+                                            name="tempat_berangkat" placeholder="Tulis Tempat Keberangkatan">
+                                    </div>
+                                    <div class="form-group">
+=======
+>>>>>>> e9548987a006294c9810cc9b0865bd15adff1218
                                         <label for="tempat_tujuan">Tempat Tujuan</label>
-                                        <input type="text" class="form-control" id="tempat_tujuan" name="tempat_tujuan"
+                                        <input value="{{ $sppd->tempat_tujuan }}" type="text" class="form-control" id="tempat_tujuan" name="tempat_tujuan"
                                             placeholder="Tulis Tempat Tujuan">
                                     </div>
                                     <div class="form-group">
+<<<<<<< HEAD
+                                        <label for="tgl_pergi">Tanggal Pergi</label>
+                                        <input value="{{ $sppd->tgl_pergi }}" type="date" class="form-control" id="tgl_pergi" name="tgl_pergi"
+                                            placeholder="Pilih Tanggal Kepergian">
+                                    </div>
+                                    <div class="form-group">
+=======
+>>>>>>> e9548987a006294c9810cc9b0865bd15adff1218
                                         <label for="tgl_kembali">Tanggal Kembali</label>
-                                        <input type="date" class="form-control" id="tgl_kembali" name="tgl_kembali"
+                                        <input value="{{ $sppd->tgl_kembali }}" type="date" class="form-control" id="tgl_kembali" name="tgl_kembali"
                                             placeholder="Pilih Tanggal Kembali">
                                     </div>
                                     <div class="form-group">
                                         <label for="instansi">Instansi</label>
-                                        <input type="text" class="form-control" id="instansi" name="instansi"
+                                        <input value="{{ $sppd->instansi }}" type="text" class="form-control" id="instansi" name="instansi"
                                             placeholder="Tulis Instansi">
                                     </div>
                                     <div class="form-group">
                                         <label for="mata_anggaran">Mata Anggaran</label>
-                                        <input type="text" class="form-control" id="mata_anggaran" name="mata_anggaran"
+                                        <input value="{{ $sppd->mata_anggaran }}" type="text" class="form-control" id="mata_anggaran" name="mata_anggaran"
                                             placeholder="Tulis Mata Anggaran">
                                     </div>
                                 </div>
@@ -103,7 +141,7 @@
                                 <div class="col-md grid-margin">
                                     <div class="form-group">
                                         <label for="keterangan">Keterangan</label>
-                                        <input type="text" class="form-control" id="keterangan" name="keterangan"
+                                        <input value="{{ $sppd->keterangan }}" type="text" class="form-control" id="keterangan" name="keterangan"
                                             placeholder="Tulis Keterangan">
                                     </div>
                                 </div>

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class SppdController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -25,10 +26,16 @@ class SppdController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function sppd()
+     {
+         $sppd = Sppd::all();
+         return $sppd;
+     }
+
     public function create()
     {
         $sppd = Pegawai::with(['pemerintahpd', 'diperintahpd'])->get();
-        // dd($sppd);
         return view('pages.sppd.create', ['sppd' => $sppd]);
     }
 
@@ -42,7 +49,7 @@ class SppdController extends Controller
     {
         $request->validate([
             'maksud_perintah' => 'required',
-            'transportasi' => 'required|min:6',
+            'transportasi' => 'required',
             'tempat_berangkat' => 'required',
             'tempat_tujuan' => 'required',
             'tgl_pergi' => 'required',
@@ -71,7 +78,7 @@ class SppdController extends Controller
         $sppd->pengikut()->sync($request->pengikut);
 
         return redirect()->route('sppd.index')
-            ->with('toast_success', 'Data Pegawai Berhasil Ditambahkan');
+            ->with('toast_success', 'Data SPPD Berhasil Ditambahkan');
     }
 
     /**
@@ -82,8 +89,6 @@ class SppdController extends Controller
      */
     public function show($id)
     {
-        $sppd = Sppd::with('pemerintahpd', 'diperintahpd', 'pengikutSatupd', 'pengikutDuapd', 'pengikutTigapd')->findOrFail($id);
-        return view('pages.sppd.show', ['sppd' => $sppd]);
     }
 
     /**
@@ -96,6 +101,7 @@ class SppdController extends Controller
     {
         $sppd = Sppd::findOrFail($id);
         $pegawai = Pegawai::with(['pemerintahpd', 'diperintahpd'])->get();
+        // dd($pegawai);
         return view('pages.sppd.edit', ['sppd' => $sppd, 'pegawai' => $pegawai]);
     }
 
