@@ -63,7 +63,7 @@
                                 <td>{{ $s->keterangan }}</td>
                                 <td class="text-center flex flex-row">
                                     <form action="{{ route('sppd.destroy', $s->id) }}" method="POST">
-                                        <a href="{{ route('sppd.show', $s->id) }}" id="btn-show-sppd"
+                                        <a href="/pdf2/{{ $s->id }}" id="btn-show-sppd"
                                             data-id="{{ $s->id }}" class="btn btn-primary btn-sm"><i
                                                 class="mdi mdi mdi-eye"></i></a>
                                         <a href="{{ route('sppd.edit', $s->id) }}" id="btn-edit-sppd"

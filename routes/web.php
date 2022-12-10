@@ -34,8 +34,8 @@ Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard')
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 // pdf
-Route::get('/pdf1', [PdfController::class, 'index']);
-Route::get('/pdf2', [PdfController::class, 'pdf2']);
+Route::get('/pdf1/{id}', [PdfController::class, 'index']);
+Route::get('/pdf2/{id}', [PdfController::class, 'pdf2']);
 Route::get('/pdf3', [PdfController::class, 'pdf3']);
 
 // contact me
