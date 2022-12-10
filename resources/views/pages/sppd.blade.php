@@ -19,6 +19,7 @@
                 <table class="table table-striped table-bordered" id="table_sppd">
                     <thead>
                         <tr>
+<<<<<<< HEAD
                             <td rowspan="2">No</td>
                             <td rowspan="2">Pejabat Pemberi Perintah</td>
                             {{-- <td rowspan="2">Jabatan</td> --}}
@@ -36,10 +37,25 @@
                             <td colspan="2">Pembebanan Anggaran</td>
                             <td rowspan="2">Keterangan</td>
                             <td rowspan="2">Aksi</td>
+=======
+                            <th rowspan="2">No</th>
+                            <th rowspan="2">Pejabat Pemberi Perintah</th>
+                            <th rowspan="2">Pegawai yang Diperintah</th>
+                            <th rowspan="2">Maksud Perjalanan Dinas</th>
+                            <th rowspan="2">Transportasi</th>
+                            <th rowspan="2">Tempat Berangkat</th>
+                            <th rowspan="2">Tempat Tujuan</th>
+                            <th rowspan="2">Tgl. Pergi</th>
+                            <th rowspan="2">Tgl. Kembali</th>
+                            <th rowspan="2">Pengikut / NIP</th>
+                            <th colspan="2">Pembebanan Anggaran</th>
+                            <th rowspan="2">Keterangan</th>
+                            <th rowspan="2">Aksi</th>
+>>>>>>> e9548987a006294c9810cc9b0865bd15adff1218
                         </tr>
                         <tr>
-                            <td>Instansi</td>
-                            <td>Mata Anggaran</td>
+                            <th>Instansi</th>
+                            <th>Mata Anggaran</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,7 +81,7 @@
                                 <td>{{ $s->keterangan }}</td>
                                 <td class="text-center flex flex-row">
                                     <form action="{{ route('sppd.destroy', $s->id) }}" method="POST">
-                                        <a href="{{ route('sppd.show', $s->id) }}" id="btn-show-sppd"
+                                        <a href="/pdf2/{{ $s->id }}" id="btn-show-sppd"
                                             data-id="{{ $s->id }}" class="btn btn-primary btn-sm"><i
                                                 class="mdi mdi mdi-eye"></i></a>
                                         <a href="{{ route('sppd.edit', $s->id) }}" id="btn-edit-sppd"

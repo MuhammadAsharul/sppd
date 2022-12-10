@@ -19,10 +19,10 @@
                             <h2 class="text-light">{{ $pegawai }}</h2>
                         </div>
                         <div class="col align-self-center">
-                            <a href="datasppd.php">
-                                <button type="button" class="btn btn-outline-dark btn-icon-text">
+                            <a href="{{ route('sppd.index') }}">
+                                <button type="button" class="btn btn-outline-dark btn-icon-text btn-lg">
                                     <i class="ti-file btn-icon-prepend"></i>
-                                    Lihat
+                                    LIHAT
                                 </button>
                             </a>
                         </div>
@@ -40,10 +40,10 @@
                             <h2 class="text-light">420</h2>
                         </div>
                         <div class="col align-self-center">
-                            <a href="dataspt.php">
-                                <button type="button" class="btn btn-outline-dark btn-icon-text">
+                            <a href="{{ route('spt.index') }}">
+                                <button type="button" class="btn btn-outline-dark btn-icon-text btn-lg">
                                     <i class="ti-file btn-icon-prepend"></i>
-                                    Lihat
+                                    LIHAT
                                 </button>
                             </a>
                         </div>
@@ -64,10 +64,10 @@
                             <h2 class="text-light">888</h2>
                         </div>
                         <div class="col align-self-center">
-                            <a href="datauang.php">
-                                <button type="button" class="btn btn-outline-dark btn-icon-text">
+                            <a href="{{ route('biaya.index') }}">
+                                <button type="button" class="btn btn-outline-dark btn-icon-text btn-lg">
                                     <i class="ti-file btn-icon-prepend"></i>
-                                    Lihat
+                                    LIHAT
                                 </button>
                             </a>
                         </div>
@@ -85,10 +85,10 @@
                             <h2 class="text-dark">555</h2>
                         </div>
                         <div class="col align-self-center">
-                            <a href="datapegawai.php">
-                                <button type="button" class="btn btn-outline-dark btn-icon-text">
+                            <a href="{{ route('pegawai.index') }}">
+                                <button type="button" class="btn btn-outline-dark btn-icon-text btn-lg">
                                     <i class="ti-file btn-icon-prepend"></i>
-                                    Lihat
+                                    LIHAT
                                 </button>
                             </a>
                         </div>

@@ -11,9 +11,8 @@
                         </div>
                         <div>
                             <a href="{{ route('sppd.index') }}">
-                                <button type="button" class="btn btn-social-icon-text btn-dark">
+                                <button type="button" class="btn btn-dark">
                                     <i class="mdi mdi-arrow-left"></i>
-                                    Kembali
                                 </button>
                             </a>
                         </div>
@@ -44,14 +43,14 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="pejabat_diperintah">Pegawai yang Diperintah</label>
-                                        <select class="js-example-basic-multiple w-100"name="pejabat_diperintah"
-                                            id="pejabat_diperintah">
-                                            <option value="">Pilih Salah Satu</option>
-                                            @foreach ($sppd as $s)
-                                                <option value="{{ $s->id }}">{{ $s->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <label for="tempat_berangkat">Tempat Berangkat</label>
+                                        <input type="text" class="form-control" id="tempat_berangkat"
+                                            name="tempat_berangkat" placeholder="Tulis Tempat Keberangkatan">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tgl_pergi">Tanggal Pergi</label>
+                                        <input type="date" class="form-control" id="tgl_pergi" name="tgl_pergi"
+                                            placeholder="Pilih Tanggal Kepergian">
                                     </div>
                                     <div class="form-group">
                                         <label for="maksud_perintah">Maksud Perjalanan Dinas</label>
@@ -63,6 +62,7 @@
                                         <input type="text" class="form-control" id="transportasi" name="transportasi"
                                             placeholder="Tulis Transportasi yang Digunakan">
                                     </div>
+<<<<<<< HEAD
                                     <div>
                                         <div>Pengikut</div>
                                         <div id="pengikut-wrapper">
@@ -81,22 +81,23 @@
                                             Tambah pengikut
                                         </button>
                                     </div>
+=======
                                 </div>
                                 <div class="col-md-6 grid-margin">
                                     <div class="form-group">
-                                        <label for="tempat_berangkat">Tempat Berangkat</label>
-                                        <input type="text" class="form-control" id="tempat_berangkat"
-                                            name="tempat_berangkat" placeholder="Tulis Tempat Keberangkatan">
+                                        <label for="pejabat_diperintah">Pegawai yang Diperintah</label>
+                                        <select class="js-example-basic-multiple w-100"name="pejabat_diperintah"
+                                            id="pejabat_diperintah">
+                                            <option value="">Pilih Salah Satu</option>
+                                            @foreach ($sppd as $s)
+                                                <option value="{{ $s->id }}">{{ $s->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="tempat_tujuan">Tempat Tujuan</label>
                                         <input type="text" class="form-control" id="tempat_tujuan" name="tempat_tujuan"
                                             placeholder="Tulis Tempat Tujuan">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="tgl_pergi">Tanggal Pergi</label>
-                                        <input type="date" class="form-control" id="tgl_pergi" name="tgl_pergi"
-                                            placeholder="Pilih Tanggal Kepergian">
                                     </div>
                                     <div class="form-group">
                                         <label for="tgl_kembali">Tanggal Kembali</label>
@@ -113,6 +114,10 @@
                                         <input type="text" class="form-control" id="mata_anggaran" name="mata_anggaran"
                                             placeholder="Tulis Mata Anggaran">
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md grid-margin">
                                     <div class="form-group">
                                         <label for="keterangan">Keterangan</label>
                                         <input type="text" class="form-control" id="keterangan" name="keterangan"
@@ -120,8 +125,68 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md grid-margin">
+                                    <div class="d-sm-flex justify-content-between align-items-center">
+                                        <div>
+                                            <label for=pengikut>Pengikut</label>
+                                        </div>
+                                        <div>
+                                            <button id="add-pengikut-button" type="button" class="btn btn-success">
+                                                <i class="mdi mdi-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div id="pengikut-wrapper">
+                                        <div class="form-group">
+                                            <label>Pengikut 1</label>
+                                            <select class="js-example-basic-multiple w-100" name="pengikut[]"
+                                                id="pengikut">
+                                                <option value="">Pilih Salah Satu</option>
+                                                @foreach ($sppd as $s)
+                                                    <option value="{{ $s->id }}">{{ $s->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    {{-- <div class="form-group">
+                                        <label>Pengikut Satu</label>
+                                        <select class="js-example-basic-multiple w-100" name="pengikut_satu"
+                                            id="pengikut_satu">
+                                            <option value="">Pilih Salah Satu</option>
+                                            @foreach ($sppd as $s)
+                                                <option value="{{ $s->id }}">{{ $s->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Pengikut Dua <span style="color: red">*optional</span></label>
+                                        <select class="js-example-basic-multiple w-100" name="pengikut_dua"
+                                            id="pengikut_dua">
+                                            <option value="">Pilih Salah Satu</option>
+                                            @foreach ($sppd as $s)
+                                                <option value="{{ $s->id }}">{{ $s->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Pengikut Tiga <span style="color: red">*optional</span></label>
+                                        <select class="js-example-basic-multiple w-100" name="pengikut_tiga"
+                                            id="pengikut_tiga">
+                                            <option value="">Pilih Salah Satu</option>
+                                            @foreach ($sppd as $s)
+                                                <option value="{{ $s->id }}">{{ $s->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div> --}}
+>>>>>>> e9548987a006294c9810cc9b0865bd15adff1218
+                                </div>
+                            </div>
                     </div>
-                    <button type="submit" class="btn btn-primary me-2">Tambah</button>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary me-2">Tambah</button>
+                    </div>
                 </div>
                 </form>
             </div>
