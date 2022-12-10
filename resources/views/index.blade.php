@@ -16,7 +16,7 @@
         <!-- partial:../../partials/_navbar.html -->
         @include('partials.navbar')
         <!-- partial -->
-        <div class="container-fluid page-body-wrapper">
+        <div class="page-body-wrapper">
             <!-- partial:../../partials/_sidebar.html -->
             @include('partials.sidebar')
             <!-- partial -->

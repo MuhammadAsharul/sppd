@@ -8,10 +8,10 @@
             <div class="row w-100 mx-0">
                 <div class="col-lg-4 mx-auto">
                     <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                        <div class="brand-logo">
-                            <img src="{{ 'images/logo.svg' }}" alt="logo">
-                        </div>
                         <div class="text-center">
+                            <div class="brand-logo">
+                                <img src="{{ 'images/karanganyar.png' }}" alt="logo">
+                            </div>
                             <h4>Selamat Datang di Aplikasi SPPD</h4>
                             <h6 class="fw-light">Masuk untuk lanjut.</h6>
                         </div>
