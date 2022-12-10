@@ -6,11 +6,11 @@
             </button>
         </div>
         <div>
-            <a class="navbar-brand brand-logo" href="../../index.html">
-                <img src="../../images/logo.svg" alt="logo" />
+            <a class="navbar-brand brand-logo" href="{{ route('dashboard') }}">
+                <img src="{{ asset('images/logo.svg') }}" alt="logo" />
             </a>
-            <a class="navbar-brand brand-logo-mini" href="../../index.html">
-                <img src="../../images/logo-mini.svg" alt="logo" />
+            <a class="navbar-brand brand-logo-mini" href="{{ route('dashboard') }}">
+                <img src="{{ asset('images/logo-mini.svg') }}" alt="logo" />
             </a>
         </div>
     </div>

@@ -8,7 +8,7 @@
                     <h4 class="card-title">Daftar Data Biaya</h4>
                 </div>
                 <div>
-                    <a href="{{ route('pegawai.create') }}">
+                    <a href="{{ route('biaya.create') }}">
                         <button type="button" class="btn btn-success btn-md">
                             Tambah Data
                         </button>

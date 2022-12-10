@@ -7,7 +7,7 @@ use App\Http\Controllers\SppdController;
 use App\Http\Controllers\BiayaController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PegawaiController;
-
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,3 +40,10 @@ Route::resource('pegawai', PegawaiController::class);
 Route::resource('sppd', SppdController::class);
 Route::resource('spt', SptController::class);
 Route::resource('biaya', BiayaController::class);
+
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+
+// logActivity
+Route::get('add-to-log', 'App\Http\Controllers\LogActivityController@myTestAddToLog');
+Route::get('log-activity', 'App\Http\Controllers\LogActivityController@logActivity');

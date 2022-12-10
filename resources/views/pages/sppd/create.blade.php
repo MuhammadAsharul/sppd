@@ -65,7 +65,7 @@
                                     </div>
                                     <div>
                                         <div>Pengikut</div>
-                                       <div id="pengikut-wrapper">
+                                        <div id="pengikut-wrapper">
                                             <div class="form-group">
                                                 <label>Pengikut 1</label>
                                                 <select class="js-example-basic-multiple w-100" name="pengikut[]"
@@ -76,44 +76,11 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                       </div>
-
-                                       <button id="add-pengikut-button" type="button">
+                                        </div>
+                                        <button id="add-pengikut-button" type="button">
                                             Tambah pengikut
-                                       </button>
+                                        </button>
                                     </div>
-                                    
-                                    {{-- <div class="form-group">
-                                        <label>Pengikut Satu</label>
-                                        <select class="js-example-basic-multiple w-100" name="pengikut_satu"
-                                            id="pengikut_satu">
-                                            <option value="">Pilih Salah Satu</option>
-                                            @foreach ($sppd as $s)
-                                                <option value="{{ $s->id }}">{{ $s->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Pengikut Dua <span style="color: red">*optional</span></label>
-                                        <select class="js-example-basic-multiple w-100" name="pengikut_dua"
-                                            id="pengikut_dua">
-                                            <option value="">Pilih Salah Satu</option>
-                                            
-                                            @foreach ($sppd as $s)
-                                                <option value="{{ $s->id }}">{{ $s->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Pengikut Tiga <span style="color: red">*optional</span></label>
-                                        <select class="js-example-basic-multiple w-100" name="pengikut_tiga"
-                                            id="pengikut_tiga">
-                                            <option value="">Pilih Salah Satu</option>
-                                            @foreach ($sppd as $s)
-                                                <option value="{{ $s->id }}">{{ $s->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div> --}}
                                 </div>
                                 <div class="col-md-6 grid-margin">
                                     <div class="form-group">

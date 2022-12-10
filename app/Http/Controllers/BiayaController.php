@@ -15,10 +15,9 @@ class BiayaController extends Controller
      */
     public function index()
     {
-        // $biaya = Biaya::latest()->paginate(5);
-        // $pegawai = Pegawai::all();
-        // return view('pages.biaya', compact('biaya'))
-        //     ->with('i', (request()->input('page', 1) - 1) * 5);
+        $biaya = Biaya::all();
+        return view('pages.biaya', compact('biaya'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -28,6 +27,9 @@ class BiayaController extends Controller
      */
     public function create()
     {
+        $biaya = Pegawai::with('biayas')->get();
+        // dd($biaya);
+        return view('pages.biaya.create', ['biaya' => $biaya]);
     }
 
     /**
@@ -38,7 +40,31 @@ class BiayaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kegiatan' => 'required',
+            'lokasi' => 'required',
+            'hari_tgl' => 'required',
+            'rekening' => 'required',
+            'uang_harian' => 'required',
+            'uang_transport' => 'required',
+            'biaya_transport' => 'required',
+        ]);
+
+        // dd($request->all());
+        $biaya = Biaya::updateOrCreate([
+            'kegiatan' => $request->kegiatan,
+            'lokasi' => $request->lokasi,
+            'hari_tgl' => $request->hari_tgl,
+            'rekening' => $request->rekening,
+            'uang_harian' => $request->uang_harian,
+            'uang_transport' => $request->uang_transport,
+            'biaya_transport' => $request->biaya_transport,
+        ]);
+
+        $biaya->namaa()->sync($request->namaa);
+
+        return redirect()->route('biaya.index')
+            ->with('toast_success', 'Data Biaya Berhasil Ditambahkan');
     }
 
     /**
@@ -58,9 +84,11 @@ class BiayaController extends Controller
      * @param  \App\Models\Biaya  $biaya
      * @return \Illuminate\Http\Response
      */
-    public function edit(Biaya $biaya)
+    public function edit($id)
     {
-        //
+        $biaya = Biaya::findOrFail($id);
+        $pegawai = Pegawai::with('biayas')->get();
+        return view('pages.biaya.edit', ['biaya' => $biaya, 'pegawai' => $pegawai]);
     }
 
     /**
@@ -72,7 +100,11 @@ class BiayaController extends Controller
      */
     public function update(Request $request, Biaya $biaya)
     {
-        //
+        $biaya->namaa()->sync($request->namaa);
+        $biaya->update($request->all());
+
+        return redirect()->route('sppd.index')
+            ->with('toast_success', 'Data Sppd Berhasil Diupdate');
     }
 
     /**
@@ -81,8 +113,13 @@ class BiayaController extends Controller
      * @param  \App\Models\Biaya  $biaya
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Biaya $biaya)
+    public function destroy($id)
     {
-        //
+        $biaya = Biaya::find($id);
+        $biaya->namaa()->sync([]);
+        $biaya->delete();
+
+        return redirect()->route('biaya.index')
+            ->with('toast_success', 'Data Biaya Berhasil Dihapus');
     }
 }

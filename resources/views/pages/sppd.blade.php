@@ -21,6 +21,7 @@
                         <tr>
                             <td rowspan="2">No</td>
                             <td rowspan="2">Pejabat Pemberi Perintah</td>
+                            {{-- <td rowspan="2">Jabatan</td> --}}
                             <td rowspan="2">Pegawai yang Diperintah</td>
                             {{-- <td rowspan="2">Golongan</td>
                             <td rowspan="2">Jabatan</td>
@@ -46,6 +47,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $s->pejabat_pemerintahh->name }}</td>
+                                {{-- <td>{{ $s->pejabat_pemerintahh->golongan }}</td> --}}
                                 <td>{{ $s->pejabat_diperintahh->name }}</td>
                                 <td>{{ $s->maksud_perintah }}</td>
                                 <td>{{ $s->transportasi }}</td>

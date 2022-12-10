@@ -10,7 +10,7 @@ class Sppd extends Model
 {
     use HasFactory;
     protected $fillable = ['id', 'maksud_perintah', 'transportasi', 'tempat_berangkat', 'tempat_tujuan',  'tgl_pergi', 'tgl_kembali', 'pejabat_pemerintah', 'pejabat_diperintah', 'instansi', 'mata_anggaran', 'keterangan'];
-
+    // protected $dates = ['tgl_pergi', 'tgl_kembali'];
     public function pengikut()
     {
         return $this->belongsToMany(Pegawai::class, 'sppd_pengikuts');
