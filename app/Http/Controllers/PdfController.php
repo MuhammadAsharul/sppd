@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Sppd;
+use App\Models\Pegawai;
 use Codedge\Fpdf\Fpdf\Fpdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-
+use App\Http\Controllers\SppdController;
+use Attribute;
+use League\CommonMark\Extension\Attributes\Node\Attributes;
 
 class PDF_MC_Table extends FPDF
 {
@@ -387,26 +390,30 @@ class PDF_MC_Table extends FPDF
         $this->Ln(10);
     }
 
-    function Tabel($pejabat, $pegawai, $pangkat, $jabatan, $tingkat, $maksud, $kendaraan, $berangkat, $tujuan, $lama, $tglberangkat, $tglkembali, $instansi, $anggaran, $keterangan)
+    function Tabel($id)
     {
         $this->SetWidths(Array(10, 65, 95)); // Total width 175
-        $this->Row(Array('1.', 'Pejabat yang memberi perintah', $pejabat));
-        $this->Row(Array('2.', 'Nama / NIP Pegawai yang diperintah', $pegawai));
-        $this->Row(Array('3.', 'a. Pangkat dan Golongan menurut PP Np. 6 Tahun 1997', $pangkat));
-        $this->Row(Array('', 'b. Jabatan', $jabatan));
-        $this->Row(Array('', 'c. Tingkat menurut peraturan perjalanan', $tingkat));
-        $this->Row(Array('4.', 'Maksud Perjalanan', $maksud));
-        $this->Row(Array('5.', 'Alat angkut yang dipergunakan', $kendaraan));
-        $this->Row(Array('6.', 'a. Tempat berangkat', $berangkat));
-        $this->Row(Array('', 'b. Tempat tujuan', $tujuan));
-        $this->Row(Array('7.', 'a. Lamanya Perjalanan Dinas', $lama));
-        $this->Row(Array('', 'b. Tanggal berangkat', $tglberangkat));
-        $this->Row(Array('', 'c. Tanggal harus kembali', $tglkembali));
-        $this->Row(Array('8.', 'Pengikut / NIP', '1. Suparno / 19731103 199803 1 012 \n 2. Yahya Fathoni Amri, S.Kom. / -'));
+        $singleData = Sppd::find($id);
+        $pemerintah = pegawai::find($singleData->pejabat_pemerintah);
+        $Diperintah = pegawai::find($singleData->pejabat_diperintah);
+
+        $this->Row(Array('1.', 'Pejabat yang memberi perintah', $pemerintah->name));
+        $this->Row(Array('2.', 'Nama / NIP Pegawai yang diperintah',  $Diperintah->name . " / " . $Diperintah->nip));
+        $this->Row(Array('3.', 'a. Pangkat dan Golongan menurut PP Np. 6 Tahun 1997', $Diperintah->pangkat));
+        $this->Row(Array('', 'b. Jabatan', $Diperintah->jabatan));
+        $this->Row(Array('', 'c. Tingkat menurut peraturan perjalanan', $Diperintah->golongan));
+        $this->Row(Array('4.', 'Maksud Perjalanan', $singleData->maksud_perintah));
+        $this->Row(Array('5.', 'Alat angkut yang dipergunakan', $singleData->transportasi));
+        $this->Row(Array('6.', 'a. Tempat berangkat', $singleData->tempat_berangkat));
+        $this->Row(Array('', 'b. Tempat tujuan', $singleData->tempat_tujuan));
+        $this->Row(Array('7.', ' Lamanya Perjalanan Dinas',""));
+        $this->Row(Array('', 'a. Tanggal berangkat', $singleData->tgl_pergi));
+        $this->Row(Array('', 'b. Tanggal harus kembali', $singleData->tgl_kembali));
+        $this->Row(Array('8.', 'Pengikut / NIP', '1. Suparno / 19731103 199803 1 012  2. Yahya Fathoni Amri, S.Kom. / -'));
         $this->Row(Array('9.', 'Pembebanan Anggaran', ''));
-        $this->Row(Array('', 'a. Instansi', $instansi));
-        $this->Row(Array('', 'b. Mata Anggaran', $anggaran));
-        $this->Row(Array('10.', 'Keterangan lain-lain', $keterangan));
+        $this->Row(Array('', 'a. Instansi', $singleData->instansi));
+        $this->Row(Array('', 'b. Mata Anggaran', "Rp. ".$singleData->mata_anggaran));
+        $this->Row(Array('10.', 'Keterangan lain-lain', $singleData->keterangan));
         $this->Ln(10);
     }
 
@@ -648,7 +655,7 @@ class PdfController extends Controller
     }
 
     // Surat Permintaan Perjalanan Dinas
-    public function pdf2()
+    public function pdf2($id)
     {
         $this->fpdf->SetMargins(20, 7.5, 20);
         $this->fpdf->AddPage('P', array(210, 330));
@@ -674,7 +681,8 @@ class PdfController extends Controller
         $this->fpdf->Ln(7);
 
         // Tabel
-        $this->fpdf->Tabel('Plt. Kepala Dinas Komunikasi dan Informatika Kabupaten Karanganyar', 'Hartono, S.Sos., M.M. / 19691015 199003 1 007', 'Pembina / IV a', 'Kepala Bidang Tata Kelola Informatika', '-', 'Sarasehan dan Renungan Ulang Janji Hari Pramuka ke-61 Tahun 2022', 'Kendaraan Dinas', 'Karanganyar', 'Pendopo Tri Manunggal, Malanggaten, Kebakkramat', '', '13 Agustus 2022', '13 Agustus 2022', '', 'Dinas Kominfo Kabupaten Karanganyar', 'APBD TA 2022', '');
+        $this->fpdf->Tabel($id);
+        // $this->fpdf->Tabel('Plt. Kepala Dinas Komunikasi dan Informatika Kabupaten Karanganyar', 'Hartono, S.Sos., M.M. / 19691015 199003 1 007', 'Pembina / IV a', 'Kepala Bidang Tata Kelola Informatika', '-', 'Sarasehan dan Renungan Ulang Janji Hari Pramuka ke-61 Tahun 2022', 'Kendaraan Dinas', 'Karanganyar', 'Pendopo Tri Manunggal, Malanggaten, Kebakkramat', '', '13 Agustus 2022', '13 Agustus 2022', '', 'Dinas Kominfo Kabupaten Karanganyar', 'APBD TA 2022', '');
 
         // Tanda Tangan
         $this->fpdf->TTD("Karanganyar", "13 Agustus 2022", "U");
