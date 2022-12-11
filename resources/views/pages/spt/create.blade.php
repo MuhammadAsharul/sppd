@@ -11,9 +11,8 @@
                         </div>
                         <div>
                             <a href="{{ route('spt.index') }}">
-                                <button type="button" class="btn btn-social-icon-text btn-dark">
+                                <button type="button" class="btn btn-dark">
                                     <i class="mdi mdi-arrow-left"></i>
-                                    Kembali
                                 </button>
                             </a>
                         </div>
@@ -39,85 +38,89 @@
                                             name="dasar_perintah" placeholder="Tulis Dasar Perintah">
                                     </div>
                                     <div class="form-group">
-                                        <label for="maksud_tugas">Maksud Tugas</label>
-                                        <input type="text" class="form-control" id="maksud_tugas" name="maksud_tugas"
-                                            placeholder="Tulis Maksud Tugas">
-                                    </div>
-                                    <div>
-                                        <div>Pejabat yang Diperintah</div>
-                                            <div id="diperintah-wrapper">
-                                                <div class="form-group">
-                                                    <label>Pejabat Diperintah 1</label>
-                                                    <select class="js-example-basic-multiple w-100" name="diperintah[]"
-                                                        id="diperintah">
-                                                        <option value="">Pilih Salah Satu</option>
-                                                        @foreach ($spt as $s)
-                                                            <option value="{{ $s->id }}">{{ $s->name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        <button id="add-diperintah-button" class="btn btn-primary mb-2" type="button">
-                                            Tambah Pejabat
-                                        </button>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="tempat_berangkat">Tempat Berangkat</label>
-                                        <input type="text" class="form-control" id="tempat_berangkat"
-                                            name="tempat_berangkat" placeholder="Tulis Tempat Keberangkatan">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="tempat_tujuan">Tempat Tujuan</label>
-                                        <input type="text" class="form-control" id="tempat_tujuan" name="tempat_tujuan"
-                                            placeholder="Tulis Tempat Tujuan">
+                                        <label for="hari_tgl">Hari/Tanggal</label>
+                                        <input type="date" class="form-control" id="hari_tgl" name="hari_tgl"
+                                            placeholder="Pilih Tanggal Kepergian">
                                     </div>
                                 </div>
                                 <div class="col-md-6 grid-margin">
                                     <div class="form-group">
+                                        <label for="maksud_tugas">Maksud Tugas</label>
+                                        <input type="text" class="form-control" id="maksud_tugas" name="maksud_tugas"
+                                            placeholder="Tulis Maksud Tugas">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="waktu">Waktu</label>
-                                        <input type="time" value="{{Carbon\Carbon::now()->format('Y-m-d')."T".Carbon\Carbon::now()->format('H:i')}}" class="form-control" id="waktu" name="waktu"
+                                        <input type="time" value="{{Carbon\Carbon::now()->format('Y-m-d').'T'.Carbon\Carbon::now()->format('H:i')}}" class="form-control" id="waktu" name="waktu"
                                             placeholder="Pilih Waktu Kepergian">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="hari_tgl">Hari Tanggal</label>
-                                        <input type="date" class="form-control" id="hari_tgl" name="hari_tgl"
-                                            placeholder="Pilih Tanggal Kepergian">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tempat">Tempat</label>
+                                    <input type="text" class="form-control" id="tempat" name="tempat"
+                                        placeholder="Tulis Tempat">
+                                </div>
+                                <div>
+                                    <div class="d-sm-flex justify-content-between align-items-center">
+                                        <div>
+                                            <label for=pejabatdiperintah>Pejabat yang Diperintah</label>
+                                        </div>
+                                        <div>
+                                            <button id="add-diperintah-button" class="btn btn-success" type="button">
+                                                <i class="mdi mdi-plus"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="tempat">Tempat</label>
-                                        <input type="text" class="form-control" id="tempat" name="tempat"
-                                            placeholder="Pilih Tempat">
+                                    <div id="diperintah-wrapper">
+                                        <div class="form-group">
+                                            <label>Pejabat Diperintah 1</label>
+                                            <select class="js-example-basic-multiple w-100" name="diperintah[]"
+                                                id="diperintah">
+                                                <option value="">Pilih Salah Satu</option>
+                                                @foreach ($spt as $s)
+                                                    <option value="{{ $s->id }}">{{ $s->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 grid-margin">
                                     <div class="form-group">
                                         <label for="tempat_ditetapkan">Tempat Ditetapkan</label>
                                         <input type="text" class="form-control" id="tempat_ditetapkan" name="tempat_ditetapkan"
                                             placeholder="Tulis Tempat Ditetapkan">
                                     </div>
+                                </div>
+                                <div class="col-md-6 grid-margin">
                                     <div class="form-group">
                                         <label for="tgl_ditetapkan">Tanggal Ditetapkan</label>
                                         <input type="date" class="form-control" id="tgl_ditetapkan" name="tgl_ditetapkan"
                                             placeholder="Tulis Tanggal Ditetapkan">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="yang_menetapkan">Petugas yang Menetapkan</label>
-                                        <select class="js-example-basic-multiple w-100 form-control"
-                                            name="yang_menetapkan" id="yang_menetapkan">
-                                            <option value="">Pilih Salah Satu</option>
-                                            @foreach ($spt as $s)
-                                                <option value="{{ $s->id }}">{{ $s->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="yang_menetapkan">Petugas yang Menetapkan</label>
+                                    <select class="js-example-basic-multiple w-100 form-control"
+                                        name="yang_menetapkan" id="yang_menetapkan">
+                                        <option value="">Pilih Salah Satu</option>
+                                        @foreach ($spt as $s)
+                                            <option value="{{ $s->id }}">{{ $s->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary me-2">Tambah</button>
+                        </div>
+                        </div>
+                        </form>
                     </div>
-                    <button type="submit" class="btn btn-primary me-2">Tambah</button>
                 </div>
-                </form>
             </div>
         </div>
-    </div>
-    </div>
     </div>
 
 <script>

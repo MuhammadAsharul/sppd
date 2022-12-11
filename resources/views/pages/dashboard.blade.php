@@ -16,7 +16,7 @@
                         <div class="col">
                             <h4 class="card-title card-title-dash text-white mb-4">Data SPPD</h4>
                             <p class="text-light mb-1">Jumlah Data SPPD</p>
-                            <h2 class="text-light">{{ $pegawai }}</h2>
+                            <h2 class="text-light">555</h2>
                         </div>
                         <div class="col align-self-center">
                             <a href="{{ route('sppd.index') }}">

@@ -22,19 +22,19 @@
                 <table class="table table-striped table-bordered" id="table_spt">
                     <thead>
                         <tr>
-                            <td>No</td>
-                            <td>Dasar Perintah</td>
-                            <td>Pegawai yang Diperintah</td>
-                            <td>Maksud Tugas</td>
-                            <td>Hari, Tanggal</td>
-                            <td>Waktu</td>
-                            <td>Tempat</td>
-                            <td>Tempat Ditetapkan</td>
-                            <td>Tanggal Ditetapkan</td>
-                            <td>Yang Menetapkan</td>
+                            <th>No</th>
+                            <th>Dasar Perintah</th>
+                            <th>Pegawai yang Diperintah</th>
+                            <th>Maksud Tugas</th>
+                            <th>Hari, Tanggal</th>
+                            <th>Waktu</th>
+                            <th>Tempat</th>
+                            <th>Tempat Ditetapkan</th>
+                            <th>Tanggal Ditetapkan</th>
+                            <th>Yang Menetapkan</th>
                             @guest()
                             @else
-                                <td>Aksi</td>
+                                <th>Aksi</th>
                             @endguest
                         </tr>
                     </thead>
@@ -61,13 +61,13 @@
                                         <form action="{{ route('spt.destroy', $s->id) }}" method="POST">
                                             <a href="{{ route('spt.show', $s->id) }}" id="btn-show-spt"
                                                 data-id="{{ $s->id }}" class="btn btn-primary btn-sm"><i
-                                                    class="mdi mdi mdi-eye"></i></a>
+                                                    class="mdi mdi-printer"></i></a>
                                             <a href="{{ route('spt.edit', $s->id) }}" id="btn-edit-spt"
                                                 data-id="{{ $s->id }}" class="btn btn-warning btn-sm"><i
                                                     class="mdi mdi-tooltip-edit"></i></a>
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger  btn-sm"><i
+                                            <button type="submit" class="btn btn-danger btn-sm"><i
                                                     class="mdi mdi-delete"></i></button>
                                             {{-- <form method="POST" action="{{ route('pegawai.destroy', $p->id) }} ">
                                         {{ csrf_field() }}

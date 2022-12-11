@@ -19,18 +19,18 @@
                 <table class="table table-striped table-bordered" id="table_sppd">
                     <thead>
                         <tr>
-                            <td>No</td>
-                            <td>Kegiatan</td>
-                            <td>Lokasi</td>
-                            <td>Tanggal</td>
-                            <td>Kode Rekening</td>
-                            <td>Nama / NIP</td>
-                            <td>Jabatan / Pangkat / Gol. Eselon</td>
-                            <td>Uang Harian</td>
-                            <td>Uang Transport</td>
-                            <td>Biaya Transport</td>
-                            <td>Penerimaan</td>
-                            <td>Aksi</td>
+                            <th>No</th>
+                            <th>Kegiatan</th>
+                            <th>Lokasi</th>
+                            <th>Tanggal</th>
+                            <th>Kode Rekening</th>
+                            <th>Nama / NIP</th>
+                            <th>Jabatan / Pangkat / Gol. Eselon</th>
+                            <th>Uang Harian</th>
+                            <th>Uang Transport</th>
+                            <th>Biaya Transport</th>
+                            <th>Penerimaan</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>

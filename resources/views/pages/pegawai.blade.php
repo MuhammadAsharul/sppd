@@ -27,26 +27,16 @@
                 <table class="table table-striped table-bordered" id="pegawai">
                     <thead>
                         <tr>
-<<<<<<< HEAD
-                            <th>No</td>
-                            <th>NIP</td>
-                            <th>Nama</td>
-                            <th>Jabatan</td>
-                            <th>Pangkat</td>
-                            <th>Golongan</td>
-                                @guest()
-                                @else
-                                <th width="280px">Aksi</th>
-                            @endguest
-=======
                             <th>No</th>
                             <th>NIP</th>
                             <th>Nama</th>
                             <th>Jabatan</th>
                             <th>Pangkat</th>
                             <th>Golongan</th>
-                            <th width="170px">Aksi</th>
->>>>>>> e9548987a006294c9810cc9b0865bd15adff1218
+                                @guest()
+                                @else
+                                <th>Aksi</th>
+                            @endguest
                         </tr>
                     </thead>
                     <tbody>
@@ -65,7 +55,7 @@
                                     <form action="{{ route('pegawai.destroy', $p->id) }}" method="POST">
                                         <a href="{{ route('pegawai.show', $p->id) }}" id="btn-show-pegawai"
                                             data-id="{{ $p->id }}" class="btn btn-primary btn-sm"><i
-                                                class="mdi mdi mdi-eye"></i></a>
+                                                class="mdi mdi-printer"></i></a>
                                         <a href="{{ route('pegawai.edit', $p->id) }}" id="btn-edit-pegawai"
                                             data-id="{{ $p->id }}" class="btn btn-warning btn-sm"><i
                                                 class="mdi mdi-tooltip-edit"></i></a>
