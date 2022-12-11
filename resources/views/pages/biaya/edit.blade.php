@@ -10,7 +10,7 @@
                             <h4 class="card-title">Edit Data Biaya</h4>
                         </div>
                         <div>
-                            <a href="{{ route('spt.index') }}">
+                            <a href="{{ route('biaya.index') }}">
                                 <button type="button" class="btn btn-social-icon-text btn-dark">
                                     <i class="mdi mdi-arrow-left"></i>
                                     Kembali
@@ -29,79 +29,62 @@
                                 </ul>
                             </div>
                         @endif
-                        <form class="forms-sample" action="{{ route('spt.update', $spt->id) }}" method="POST">
+                        <form class="forms-sample" action="{{ route('biaya.update', $biaya->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="row">
                                 <div class="col-md-6 grid-margin">
                                     <div class="form-group">
-                                        <label for="dasar_perintah">Dasar Perintah</label>
-                                        <input value="{{ $spt->dasar_perintah }}" type="text" class="form-control" id="dasar_perintah"
-                                            name="dasar_perintah" placeholder="Tulis Dasar Perintah">
+                                        <label for="kegiatan">Kegiatan</label>
+                                        <input value="{{ $biaya->kegiatan }}" type="text" class="form-control" id="kegiatan" name="kegiatan"
+                                            placeholder="Tulis Kegiatan">
                                     </div>
                                     <div class="form-group">
-                                        <label for="maksud_tugas">Maksud Tugas</label>
-                                        <input value="{{ $spt->maksud_tugas }}" type="text" class="form-control" id="maksud_tugas" name="maksud_tugas"
-                                            placeholder="Tulis Maksud Tugas">
+                                        <label for="nama_pegawai">Pejabat Pemberi Perintah</label>
+                                        <select class="js-example-basic-multiple w-100 form-control" name="nama_pegawai"
+                                            id="nama_pegawai">
+                                            <option value="">Pilih Salah Satu</option>
+                                            @foreach ($pegawai as $s)
+                                                <option {{ $s->id == $biaya->nama_pegawai? 'selected' : ''}} value="{{ $s->id }}">{{ $s->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                </div>
-                                <div>
-                                    <div>Pejabat yang Diperintah</div>
-                                    <div id="diperintah-wrapper">
-                                        @foreach ($spt->diperintah()->get() as $item)
-                                            <div class="form-group">
-                                                <label>Pejabat Diperintah {{ $loop->iteration }}</label>
-                                                <select class="js-example-basic-multiple w-100" name="diperintah[]"
-                                                    id="diperintah">
-                                                    <option value="">Pilih Salah Satu</option>
-                                                    @foreach ($pegawai->menetapkan as $s)
-                                                        <option {{ $s->id === $item->id ? 'selected' : null }}
-                                                            value="{{ $s->id }}">{{ $s->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        @endforeach
-                                    </div>
-
-                                    <button id="add-diperintah-button " type="button">
-                                        Tambah Pejabat
-                                    </button>
-                                </div>
-                                <div class="col-md-6 grid-margin">
                                     <div class="form-group">
-                                        <label for="waktu">Waktu</label>
-                                        <input type="time" value="{{Carbon\Carbon::now()->format('Y-m-d')."T".Carbon\Carbon::now()->format('H:i')}}" class="form-control" id="waktu" name="waktu"
-                                            placeholder="Pilih Waktu Kepergian">
+                                        <label for="lokasi">Lokasi</label>
+                                        <input value="{{ $biaya->lokasi }}" type="text" class="form-control" id="lokasi" name="lokasi"
+                                            placeholder="Tulis Lokasi">
                                     </div>
                                     <div class="form-group">
                                         <label for="hari_tgl">Hari Tanggal</label>
-                                        <input type="date" class="form-control" id="hari_tgl" name="hari_tgl"
+                                        <input value="{{ $biaya->hari_tgl }}" type="date" class="form-control" id="hari_tgl" name="hari_tgl"
                                             placeholder="Pilih Tanggal Kepergian">
                                     </div>
+                                </div>
+                                <div class="col-md-6 grid-margin">
                                     <div class="form-group">
-                                        <label for="tempat">Tempat</label>
-                                        <input type="text" class="form-control" id="tempat" name="tempat"
-                                            placeholder="Pilih Tempat">
+                                        <label for="rekening">Rekening</label>
+                                        <input value="{{ $biaya->rekening }}" type="text" class="form-control" id="rekening" name="rekening"
+                                            placeholder="Tulis Nomor Rekening">
                                     </div>
                                     <div class="form-group">
-                                        <label for="tempat_ditetapkan">Tempat Ditetapkan</label>
-                                        <input type="text" class="form-control" id="tempat_ditetapkan" name="tempat_ditetapkan"
-                                            placeholder="Tulis Tempat Ditetapkan">
+                                        <label for="uang_harian">Uang Harian</label>
+                                        <input value="{{ $biaya->uang_harian }}" type="text" class="form-control" id="uang_harian" name="uang_harian"
+                                            placeholder="Tulis Nominal Uang Harian">
+                                    </div>
+                                    {{-- <div class="form-group">
+                                        <label for="waktu">Waktu</label>
+                                        <input type="time" value="{{Carbon\Carbon::now()->format('Y-m-d')."T".Carbon\Carbon::now()->format('H:i')}}" class="form-control" id="waktu" name="waktu"
+                                            placeholder="Pilih Waktu Kepergian">
+                                    </div> --}}
+                                    <div class="form-group">
+                                        <label for="uang_transport">Uang Transport</label>
+                                        <input value="{{ $biaya->uang_transport }}" type="text" class="form-control" id="uang_transport" name="uang_transport"
+                                            placeholder="Tulis Nominal Tang Transport">
                                     </div>
                                     <div class="form-group">
-                                        <label for="tgl_ditetapkan">Tanggal Ditetapkan</label>
-                                        <input type="date" class="form-control" id="tgl_ditetapkan" name="tgl_ditetapkan"
-                                            placeholder="Tulis Tanggal Ditetapkan">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="yang_menetapkan">Petugas yang Menetapkan</label>
-                                        <select class="js-example-basic-multiple w-100 form-control"
-                                            name="yang_menetapkan" id="yang_menetapkan">
-                                            <option value="">Pilih Salah Satu</option>
-                                            @foreach ($spt as $s)
-                                                <option value="{{ $s->id }}">{{ $s->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <label for="biaya_transport">Biaya Transport</label>
+                                        <input value="{{ $biaya->biaya_transport }}" type="text" class="form-control" id="biaya_transport"
+                                            name="biaya_transport" placeholder="Tulis Nominal Biaya Transport">
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +108,7 @@
                 <label>Pejabat ${position}</label>
                 <select class="js-example-basic-multiple w-100" name="diperintah[]"
                     id="diperintah">
-                    '@foreach($spt as $s) <option value="{{ $s->id }}">{{$s->name}}</option> @endforeach
+                    '@foreach($pegawai as $s) <option value="{{ $s->id }}">{{$s->name}}</option> @endforeach
                 </select>
             </div>`
     

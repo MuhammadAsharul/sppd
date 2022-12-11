@@ -44,12 +44,12 @@ Route::get('/pdf3', [PdfController::class, 'pdf3']);
 Route::get('contact-us', [ContactController::class, 'index']);
 Route::post('contact-us', [ContactController::class, 'store'])->name('contact.us.store');
 // crud
-Route::resource('pegawai', PegawaiController::class);
-Route::resource('sppd', SppdController::class);
-Route::resource('spt', SptController::class);
-Route::resource('biaya', BiayaController::class);
+Route::resource('pegawai', PegawaiController::class)->middleware('auth');
+Route::resource('sppd', SppdController::class)->middleware('auth');
+Route::resource('spt', SptController::class)->middleware('auth');
+Route::resource('biaya', BiayaController::class)->middleware('auth');
 
-Route::get('/', [DashboardController::class, 'index']);
+Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
 
 
 // logActivity
