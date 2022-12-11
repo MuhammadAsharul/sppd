@@ -61,7 +61,7 @@
                             <h4 class="card-title card-title-dash text-white mb-4">Data Penerimaan Uang
                             </h4>
                             <p class="text-light mb-1">Jumlah Data Penerimaan Uang</p>
-                            <h2 class="text-light">888</h2>
+                            <h2 class="text-light">{{ $biaya }}</h2>
                         </div>
                         <div class="col align-self-center">
                             <a href="{{ route('biaya.index') }}">
