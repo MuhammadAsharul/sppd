@@ -1,5 +1,5 @@
 @extends('index')
-@section('title', 'Edit Data SPT')
+@section('title', 'Edit Data Biaya')
 @section('content')
     <div class="row">
         <div class="col-sm-12 grid-margin stretch-card">
@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <div class="d-sm-flex justify-content-between align-items-center">
                         <div>
-                            <h4 class="card-title">Edit Data SPT</h4>
+                            <h4 class="card-title">Edit Data Biaya</h4>
                         </div>
                         <div>
                             <a href="{{ route('spt.index') }}">

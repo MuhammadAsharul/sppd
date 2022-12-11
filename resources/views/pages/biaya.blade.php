@@ -21,72 +21,59 @@
                         <tr>
                             <th>No</th>
                             <th>Kegiatan</th>
+                            <th>Nama Pegawai</th>
                             <th>Lokasi</th>
                             <th>Tanggal</th>
                             <th>Kode Rekening</th>
-                            <th>Nama / NIP</th>
-                            <th>Jabatan / Pangkat / Gol. Eselon</th>
                             <th>Uang Harian</th>
                             <th>Uang Transport</th>
                             <th>Biaya Transport</th>
                             <th>Penerimaan</th>
-                            <th>Aksi</th>
+                            @guest()
+                            @else
+                                <th>Aksi</th>
+                            @endguest
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Sarasehan dan Renungan Ulang Janji Hari Pramuka ke-61 Tahun 2022</td>
-                            <td>Pendopo Tri Manunggal, Malanggaten, Kebakkramat</td>
-                            <td>13 Agustus 2022</td>
-                            <td>2.16.03.2.02.06.5.1.02.04.01.0003</td>
-                            <td>
-                                <p>Hartono, S.Sos., M.M / 19691015 199003 1 007</p>
-                                <p>Suparno / 19731103 199803 1 012</p>
-                                <p>Yahya Fathoni Amri, S.Kom</p>
-                            </td>
-                            <td>
-                                <p>Kepala Bidang Tata Kelola Informatika Dinas Kominfo Kab. Karanganyar / Pembina / IV a</p>
-                                <p>Analis Sistem Informasi dan Diseminasi Hukum Pada Seksi Persandian dan Keamanan Jaringan
-                                    Dinas Kominfo Kab. Karanganyar / Pengatur Tingkat I / II d</p>
-                                <p>Network Analyst Dinas Kominfo Kab. Karanganyar / -</p>
-                            </td>
-                            <td>
-                                <p>-</p>
-                                <p>-</p>
-                                <p>-</p>
-                            </td>
-                            <td>
-                                <p>Rp80.000</p>
-                                <p>Ro60.000</p>
-                                <p>Rp50.000</p>
-                            </td>
-                            <td>
-                                <p>8 Lt x Rp12.500 = Rp100.000</p>
-                                <p>-</p>
-                                <p>-</p>
-                            </td>
-                            <td>
-                                <p>Rp180.000</p>
-                                <p>Rp60.000</p>
-                                <p>Rp50.000</p>
-                            </td>
-                            <td>
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-md btn-primary">
-                                        <i class="mdi mdi-printer"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-md btn-warning" data-bs-toggle="modal"
-                                        data-bs-target="#modaledituang">
-                                        <i class="mdi mdi-tooltip-edit"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-md btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#modalhapusuang">
-                                        <i class="mdi mdi-delete"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                        @foreach ($biaya as $s)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $s->kegiatan }}</td>
+                                <td>{{ $s->namaa->name }}</td>
+                                <td>{{ $s->lokasi }}</td>
+                                <td>{{ $s->hari_tgl }}</td>
+                                <td>{{ $s->rekening }}</td>
+                                <td>@currency($s->uang_harian)</td>
+                                <td> @currency($s->uang_transport)</td>
+                                <td> @currency($s->biaya_transport)</td>
+                                <td>@currency($s->uang_harian + $s->uang_transport+ $s->biaya_transport)</td>
+                                @guest()
+                                @else
+                                    <td class="text-center flex flex-row">
+                                        <form action="{{ route('biaya.destroy', $s->id) }}" method="POST">
+                                            <a href="/pdf2/{{ $s->id }}" id="btn-show-biaya"
+                                                data-id="{{ $s->id }}" class="btn btn-primary btn-sm"><i
+                                                    class="mdi mdi-printer"></i></a>
+                                            <a href="{{ route('biaya.edit', $s->id) }}" id="btn-edit-biaya"
+                                                data-id="{{ $s->id }}" class="btn btn-warning btn-sm"><i
+                                                    class="mdi mdi-tooltip-edit"></i></a>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger  btn-sm"><i
+                                                    class="mdi mdi-delete"></i></button>
+                                            {{-- <form method="POST" action="{{ route('pegawai.destroy', $p->id) }} ">
+                                        {{ csrf_field() }}
+                                        {{ method_field('delete') }}
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <button type="submit" class="btn btn-danger btn-sm show_confirm"><i
+                                                class="mdi mdi-delete"></i></button>
+                                    </form> --}}
+                                        </form>
+                                    </td>
+                                @endguest
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

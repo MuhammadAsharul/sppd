@@ -27,7 +27,7 @@ class BiayaController extends Controller
      */
     public function create()
     {
-        $biaya = Pegawai::with('biayas')->get();
+        $biaya = Pegawai::with('nama')->get();
         // dd($biaya);
         return view('pages.biaya.create', ['biaya' => $biaya]);
     }
@@ -42,6 +42,7 @@ class BiayaController extends Controller
     {
         $request->validate([
             'kegiatan' => 'required',
+            'nama_pegawai' => 'required',
             'lokasi' => 'required',
             'hari_tgl' => 'required',
             'rekening' => 'required',
@@ -53,6 +54,7 @@ class BiayaController extends Controller
         // dd($request->all());
         $biaya = Biaya::updateOrCreate([
             'kegiatan' => $request->kegiatan,
+            'nama_pegawai' => $request->nama_pegawai,
             'lokasi' => $request->lokasi,
             'hari_tgl' => $request->hari_tgl,
             'rekening' => $request->rekening,
@@ -60,9 +62,6 @@ class BiayaController extends Controller
             'uang_transport' => $request->uang_transport,
             'biaya_transport' => $request->biaya_transport,
         ]);
-
-        $biaya->namaa()->sync($request->namaa);
-
         return redirect()->route('biaya.index')
             ->with('toast_success', 'Data Biaya Berhasil Ditambahkan');
     }
@@ -87,7 +86,7 @@ class BiayaController extends Controller
     public function edit($id)
     {
         $biaya = Biaya::findOrFail($id);
-        $pegawai = Pegawai::with('biayas')->get();
+        $pegawai = Pegawai::with('nama')->get();
         return view('pages.biaya.edit', ['biaya' => $biaya, 'pegawai' => $pegawai]);
     }
 
@@ -100,11 +99,9 @@ class BiayaController extends Controller
      */
     public function update(Request $request, Biaya $biaya)
     {
-        $biaya->namaa()->sync($request->namaa);
         $biaya->update($request->all());
-
-        return redirect()->route('sppd.index')
-            ->with('toast_success', 'Data Sppd Berhasil Diupdate');
+        return redirect()->route('biaya.index')
+            ->with('toast_success', 'Data Biaya Berhasil Diupdate');
     }
 
     /**
@@ -116,7 +113,6 @@ class BiayaController extends Controller
     public function destroy($id)
     {
         $biaya = Biaya::find($id);
-        $biaya->namaa()->sync([]);
         $biaya->delete();
 
         return redirect()->route('biaya.index')

@@ -12,6 +12,8 @@ class DashboardController extends Controller
     public function index()
     {
         $pegawai = Pegawai::count();
-        return view('pages.dashboard', ['pegawai' => $pegawai]);
+        $sppd = Sppd::count();
+        $spt = Spt::count();
+        return view('pages.dashboard', ['pegawai' => $pegawai, 'spt' => $spt, 'sppd' => $sppd]);
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class SppdController extends Controller
 {
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -27,11 +27,11 @@ class SppdController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function sppd()
-     {
-         $sppd = Sppd::all();
-         return $sppd;
-     }
+    public function sppd()
+    {
+        $sppd = Sppd::all();
+        return $sppd;
+    }
 
     public function create()
     {

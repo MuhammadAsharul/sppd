@@ -35,31 +35,23 @@
                                 <div class="col-md-6 grid-margin">
                                     <div class="form-group">
                                         <label for="kegiatan">Kegiatan</label>
-                                        <input type="text" class="form-control" id="kegiatan"
-                                            name="kegiatan" placeholder="Tulis Kegiatan">
+                                        <input type="text" class="form-control" id="kegiatan" name="kegiatan"
+                                            placeholder="Tulis Kegiatan">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nama_pegawai">Pejabat Pemberi Perintah</label>
+                                        <select class="js-example-basic-multiple w-100 form-control" name="nama_pegawai"
+                                            id="nama_pegawai">
+                                            <option value="">Pilih Salah Satu</option>
+                                            @foreach ($biaya as $s)
+                                                <option value="{{ $s->id }}">{{ $s->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="lokasi">Lokasi</label>
                                         <input type="text" class="form-control" id="lokasi" name="lokasi"
                                             placeholder="Tulis Lokasi">
-                                    </div>
-                                    <div>
-                                        <div>Nama Penerima</div>
-                                            <div id="namaa-wrapper">
-                                                <div class="form-group">
-                                                    <label>Nama Penerima 1</label>
-                                                    <select class="js-example-basic-multiple w-100" name="namaa[]"
-                                                        id="namaa">
-                                                        <option value="">Pilih Salah Satu</option>
-                                                        @foreach ($biaya as $b)
-                                                            <option value="{{ $b->id }}">{{ $b->name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        <button id="add-namaa-button" class="btn btn-primary mb-2" type="button">
-                                            Tambah Pejabat
-                                        </button>
                                     </div>
                                     <div class="form-group">
                                         <label for="hari_tgl">Hari Tanggal</label>
@@ -70,8 +62,8 @@
                                 <div class="col-md-6 grid-margin">
                                     <div class="form-group">
                                         <label for="rekening">Rekening</label>
-                                        <input type="text" class="form-control" id="rekening"
-                                            name="rekening" placeholder="Tulis Nomor Rekening">
+                                        <input type="text" class="form-control" id="rekening" name="rekening"
+                                            placeholder="Tulis Nomor Rekening">
                                     </div>
                                     <div class="form-group">
                                         <label for="uang_harian">Uang Harian</label>
@@ -86,12 +78,12 @@
                                     <div class="form-group">
                                         <label for="uang_transport">Uang Transport</label>
                                         <input type="text" class="form-control" id="uang_transport" name="uang_transport"
-                                            placeholder="Pilih Nominal Tang Transport">
+                                            placeholder="Tulis Nominal Tang Transport">
                                     </div>
                                     <div class="form-group">
                                         <label for="biaya_transport">Biaya Transport</label>
-                                        <input type="text" class="form-control" id="biaya_transport" name="biaya_transport"
-                                            placeholder="Tulis Nominal Biaya Transport">
+                                        <input type="text" class="form-control" id="biaya_transport"
+                                            name="biaya_transport" placeholder="Tulis Nominal Biaya Transport">
                                     </div>
                                 </div>
                             </div>
@@ -104,26 +96,4 @@
     </div>
     </div>
     </div>
-
-<script>
-    const wrapperFields = document.querySelector('#namaa-wrapper');
-    const addBiayaButton = document.querySelector('#add-namaa-button');
-    const biayas = [];
-
-    const template = (position) =>`<div class="form-group">
-            <label>Biaya ${position}</label>
-            <select class="js-example-basic-multiple w-100" name="namaa[]"
-                id="namaa">
-                '@foreach($biaya as $b) <option value="{{ $b->id }}">{{$b->name}}</option> @endforeach
-            </select>
-        </div>`
-
-    addBiayaButton.addEventListener('click', () => {
-        const lastChild = wrapperFields.querySelector('.form-group:last-child')
-        const currentLength =  wrapperFields.children.length;
-        console.log(wrapperFields)
-        lastChild.insertAdjacentHTML('afterend', template(currentLength + 1));    
-    })
-</script>
-
 @endsection

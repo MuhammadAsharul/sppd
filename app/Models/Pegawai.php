@@ -29,13 +29,13 @@ class Pegawai extends Model
     {
         return $this->hasMany(Sppd::class, 'pejabat_diperintah');
     }
+    public function nama()
+    {
+        return $this->hasMany(Biaya::class, 'nama_pegawai');
+    }
 
     public function menetapkanpt()
     {
         return $this->hasMany(Spt::class, 'yang_menetapkan');
-    }
-    public function biayas()
-    {
-        return $this->hasMany(Biaya::class);
     }
 }

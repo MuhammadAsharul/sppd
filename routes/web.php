@@ -7,7 +7,6 @@ use App\Http\Controllers\SppdController;
 use App\Http\Controllers\BiayaController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PegawaiController;
-
 use App\Http\Controllers\DashboardController;
 
 use App\Http\Controllers\PdfController;
@@ -23,9 +22,9 @@ use App\Http\Controllers\PdfController;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.dashboard');
-});
+// Route::get('/', function () {
+//     return view('pages.dashboard');
+// });
 Route::get('login', function () {
     return view('auth.login');
 });
@@ -50,7 +49,7 @@ Route::resource('sppd', SppdController::class);
 Route::resource('spt', SptController::class);
 Route::resource('biaya', BiayaController::class);
 
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/', [DashboardController::class, 'index']);
 
 
 // logActivity

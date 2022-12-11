@@ -7,13 +7,16 @@
                 <div>
                     <h4 class="card-title">Daftar Data SPPD</h4>
                 </div>
-                <div>
-                    <a href="{{ route('sppd.create') }}">
-                        <button type="button" class="btn btn-success btn-md">
-                            Tambah Data
-                        </button>
-                    </a>
-                </div>
+                @guest()
+                @else
+                    <div>
+                        <a href="{{ route('sppd.create') }}">
+                            <button type="button" class="btn btn-success btn-md">
+                                Tambah Data
+                            </button>
+                        </a>
+                    </div>
+                @endguest
             </div>
             <div class="table-responsive mt-3">
                 <table class="table table-striped table-bordered" id="table_sppd">
@@ -35,7 +38,10 @@
                             <th rowspan="2">Pengikut / NIP</th>
                             <th colspan="2">Pembebanan Anggaran</th>
                             <th rowspan="2">Keterangan</th>
-                            <th rowspan="2">Aksi</th>
+                            @guest()
+                            @else
+                                <th rowspan="2">Aksi</th>
+                            @endguest
                         </tr>
                         <tr>
                             <th>Instansi</th>
@@ -63,27 +69,30 @@
                                 <td>{{ $s->instansi }}</td>
                                 <td>{{ $s->mata_anggaran }}</td>
                                 <td>{{ $s->keterangan }}</td>
-                                <td class="text-center flex flex-row">
-                                    <form action="{{ route('sppd.destroy', $s->id) }}" method="POST">
-                                        <a href="/pdf2/{{ $s->id }}" id="btn-show-sppd"
-                                            data-id="{{ $s->id }}" class="btn btn-primary btn-sm"><i
-                                                class="mdi mdi-printer"></i></a>
-                                        <a href="{{ route('sppd.edit', $s->id) }}" id="btn-edit-sppd"
-                                            data-id="{{ $s->id }}" class="btn btn-warning btn-sm"><i
-                                                class="mdi mdi-tooltip-edit"></i></a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger  btn-sm"><i
-                                                class="mdi mdi-delete"></i></button>
-                                        {{-- <form method="POST" action="{{ route('pegawai.destroy', $p->id) }} ">
+                                @guest()
+                                @else
+                                    <td class="text-center flex flex-row">
+                                        <form action="{{ route('sppd.destroy', $s->id) }}" method="POST">
+                                            <a href="/pdf2/{{ $s->id }}" id="btn-show-sppd"
+                                                data-id="{{ $s->id }}" class="btn btn-primary btn-sm"><i
+                                                    class="mdi mdi-printer"></i></a>
+                                            <a href="{{ route('sppd.edit', $s->id) }}" id="btn-edit-sppd"
+                                                data-id="{{ $s->id }}" class="btn btn-warning btn-sm"><i
+                                                    class="mdi mdi-tooltip-edit"></i></a>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger  btn-sm"><i
+                                                    class="mdi mdi-delete"></i></button>
+                                            {{-- <form method="POST" action="{{ route('pegawai.destroy', $p->id) }} ">
                                         {{ csrf_field() }}
                                         {{ method_field('delete') }}
                                         <input name="_method" type="hidden" value="DELETE">
                                         <button type="submit" class="btn btn-danger btn-sm show_confirm"><i
                                                 class="mdi mdi-delete"></i></button>
                                     </form> --}}
-                                    </form>
-                                </td>
+                                        </form>
+                                    </td>
+                                @endguest
                             </tr>
                         @endforeach
 
