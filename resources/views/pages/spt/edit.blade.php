@@ -62,7 +62,7 @@
                                             @endforeach
                                         </div>
     
-                                        <button id="add-diperintah-button " type="button">
+                                        <button id="add-diperintahButton" type="button">
                                             Tambah Pejabat
                                         </button>
                                     </div>
@@ -111,24 +111,24 @@
         </div>
     </div>
     
-<script type="text/javascript" charset="utf-8" defer>
-    const wrapperFields = document.querySelector('#diperintah-wrapper');
-    const addPejabatButton = document.querySelector('#add-diperintah-button');
-    const pejabats = [];
-    const template = (position) =>`<div class="form-group">
-            <label>Pejabat ${position}</label>
-            <select class="js-example-basic-multiple w-100" name="diperintah[]"
-                id="diperintah">
-                '@foreach($pegawai as $s) <option value="{{ $s->id }}">{{$s->name}}</option> @endforeach
-            </select>
-        </div>`
-
-    addPejabatButton.addEventListener('click', () => {
-        const lastChild = wrapperFields.querySelector('.form-group:last-child')
-        const currentLength =  wrapperFields.children.length;
-        console.log(wrapperFields)
-        lastChild.insertAdjacentHTML('afterend', template(currentLength + 1));    
-    })
-</script>
+    <script type="text/javascript" charset="utf-8" defer>
+        const wrapperFields = document.querySelector('#diperintah-wrapper');
+        const addPejabatButton = document.querySelector('#add-diperintahButton');
+        const pejabats = [];
+        const template = (position) =>`<div class="form-group">
+                <label>Pejabat ${position}</label>
+                <select class="js-example-basic-multiple w-100" name="diperintah[]"
+                    id="diperintah">
+                    '@foreach($pegawai as $s) <option value="{{ $s->id }}">{{$s->name}}</option> @endforeach
+                </select>
+            </div>`
+    
+            addPejabatButton.addEventListener('click', () => {
+            const lastChild = wrapperFields.querySelector('.form-group:last-child')
+            const currentLength =  wrapperFields.children.length;
+            console.log(wrapperFields)
+            lastChild.insertAdjacentHTML('afterend', template(currentLength + 1));    
+        })
+    </script>
 
 @endsection
