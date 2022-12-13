@@ -11,9 +11,8 @@
                         </div>
                         <div>
                             <a href="{{ route('biaya.index') }}">
-                                <button type="button" class="btn btn-social-icon-text btn-dark">
+                                <button type="button" class="btn btn-dark">
                                     <i class="mdi mdi-arrow-left"></i>
-                                    Kembali
                                 </button>
                             </a>
                         </div>
@@ -32,8 +31,6 @@
                         <form class="forms-sample" action="{{ route('biaya.update', $biaya->id) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <div class="row">
-                                <div class="col-md-6 grid-margin">
                                     <div class="form-group">
                                         <label for="kegiatan">Kegiatan</label>
                                         <input value="{{ $biaya->kegiatan }}" type="text" class="form-control" id="kegiatan" name="kegiatan"
@@ -59,15 +56,13 @@
                                         <input value="{{ $biaya->hari_tgl }}" type="date" class="form-control" id="hari_tgl" name="hari_tgl"
                                             placeholder="Pilih Tanggal Kepergian">
                                     </div>
-                                </div>
-                                <div class="col-md-6 grid-margin">
                                     <div class="form-group">
                                         <label for="rekening">Rekening</label>
                                         <input value="{{ $biaya->rekening }}" type="text" class="form-control" id="rekening" name="rekening"
                                             placeholder="Tulis Nomor Rekening">
                                     </div>
                                     <div class="form-group">
-                                        <label for="uang_harian">Uang Harian</label>
+                                        <label for="uang_harian">Uang Harian (Rp)</label>
                                         <input value="{{ $biaya->uang_harian }}" type="text" class="form-control" id="uang_harian" name="uang_harian"
                                             placeholder="Tulis Nominal Uang Harian">
                                     </div>
@@ -77,18 +72,16 @@
                                             placeholder="Pilih Waktu Kepergian">
                                     </div> --}}
                                     <div class="form-group">
-                                        <label for="uang_transport">Uang Transport</label>
+                                        <label for="uang_transport">Uang Transport (Rp)</label>
                                         <input value="{{ $biaya->uang_transport }}" type="text" class="form-control" id="uang_transport" name="uang_transport"
                                             placeholder="Tulis Nominal Tang Transport">
                                     </div>
                                     <div class="form-group">
-                                        <label for="biaya_transport">Biaya Transport</label>
+                                        <label for="biaya_transport">Biaya Transport (Rp)</label>
                                         <input value="{{ $biaya->biaya_transport }}" type="text" class="form-control" id="biaya_transport"
                                             name="biaya_transport" placeholder="Tulis Nominal Biaya Transport">
                                     </div>
-                                </div>
-                            </div>
-                            <div>
+                            <div class="d-grid">
                                 <button type="submit" class="btn btn-primary me-2">Ubah</button>
                             </div>
                         </form>

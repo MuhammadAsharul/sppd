@@ -69,6 +69,9 @@
                                             <button id="add-diperintah-button" class="btn btn-success" type="button">
                                                 <i class="mdi mdi-plus"></i>
                                             </button>
+                                            <button id="remove-pengikut-button" type="button" class="btn btn-danger">
+                                                <i class="mdi mdi-minus"></i>
+                                            </button>
                                         </div>
                                     </div>
                                     <div id="diperintah-wrapper">
@@ -126,6 +129,7 @@
 <script>
     const wrapperFields = document.querySelector('#diperintah-wrapper');
     const addPejabatButton = document.querySelector('#add-diperintah-button');
+    const removePengikutButton = document.querySelector('#remove-pengikut-button');
     const pejabats = [];
 
     const template = (position) =>`<div class="form-group">
@@ -141,6 +145,15 @@
         const currentLength =  wrapperFields.children.length;
         console.log(wrapperFields)
         lastChild.insertAdjacentHTML('afterend', template(currentLength + 1));    
+    })
+
+    removePengikutButton.addEventListener('click', () => {
+        const lastChild = wrapperFields.querySelector('.form-group:last-child')
+        const currentLength =  wrapperFields.children.length;
+        console.log(wrapperFields)
+        if (currentLength != 1) {
+            lastChild.remove(template); 
+        }
     })
 </script>
 

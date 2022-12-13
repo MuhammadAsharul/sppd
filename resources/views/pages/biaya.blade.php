@@ -31,7 +31,7 @@
                             <th>Penerimaan</th>
                             @guest()
                             @else
-                                <th>Aksi</th>
+                                <th width=135px>Aksi</th>
                             @endguest
                         </tr>
                     </thead>

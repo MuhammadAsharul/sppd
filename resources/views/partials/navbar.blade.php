@@ -6,11 +6,11 @@
             </button>
         </div>
         <div>
-            <a class="navbar-brand brand-logo" href="{{ route('dashboard') }}">
+            <a class="navbar-brand brand-logo" href="/">
                 <img src="{{ url('images/karanganyar.png') }}" alt="logo" />
                 SPPD
             </a>
-            <a class="navbar-brand brand-logo-mini" href="{{ route('dashboard') }}">
+            <a class="navbar-brand brand-logo-mini" href="/">
                 <img src="{{ url('images/karanganyar.png') }}" alt="logo" />
             </a>
         </div>
@@ -20,7 +20,7 @@
             <li class="nav-item font-weight-semibold d-none d-lg-block ms-0 mt-2">
                 @guest()
                 @else
-                    <h1 class="welcome-text">Have a Nice Day, <span
+                    <h1 class="welcome-text">Selamat Datang, <span
                             class="text-black fw-bold">{{ Auth::user()->name }}</span>
                     </h1>
                 @endguest
@@ -55,8 +55,7 @@
                             <p class="fw-light text-muted mb-0">{{ Auth::user()->email }}</p>
                         </div>
                         <a href="{{ route('logout') }}" class="dropdown-item"><i
-                                class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign
-                            Out</a>
+                                class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Keluar</a>
                     @endguest
                 </div>
             </li>
