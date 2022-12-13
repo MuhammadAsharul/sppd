@@ -59,7 +59,7 @@
                                 @else
                                     <td class="text-center flex flex-row">
                                         <form action="{{ route('spt.destroy', $s->id) }}" method="POST">
-                                            <a href="{{ route('spt.show', $s->id) }}" id="btn-show-spt"
+                                            <a href="/pdf1/{{ $s->id }}" id="btn-show-spt"
                                                 data-id="{{ $s->id }}" class="btn btn-primary btn-sm"><i
                                                     class="mdi mdi-printer"></i></a>
                                             <a href="{{ route('spt.edit', $s->id) }}" id="btn-edit-spt"
