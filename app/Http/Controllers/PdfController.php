@@ -396,6 +396,26 @@ class PDF_MC_Table extends FPDF
         $singleData = Sppd::find($id);
         $pemerintah = pegawai::find($singleData->pejabat_pemerintah);
         $Diperintah = pegawai::find($singleData->pejabat_diperintah);
+        $pengikutlist = $singleData->pengikut()->get();
+        $singlePengikut = $pengikutlist->map( function($p){
+            return $p->name;
+        });
+        $singlenip = $pengikutlist->map( function($p){
+            return $p->nip;
+        });
+        $a = array();
+        for($i = 0; $i <= count($singlePengikut)-1; $i++){
+            $number  = strval($i+1);
+            if(count($singlePengikut) === 0){
+                $g = "";
+            }elseif(count($singlePengikut) === 1){
+                $g = $singlePengikut[$i]. " / ". $singlenip[$i]."\n";
+            }else{
+                $g = $number.". ".$singlePengikut[$i]. " / ". $singlenip[$i]."\n";
+            }
+            array_push($a, $g);
+        }
+        $pengikut = implode("",$a);
 
         $this->Row(Array('1.', 'Pejabat yang memberi perintah', $pemerintah->name));
         $this->Row(Array('2.', 'Nama / NIP Pegawai yang diperintah',  $Diperintah->name . " / " . $Diperintah->nip));
@@ -409,7 +429,7 @@ class PDF_MC_Table extends FPDF
         $this->Row(Array('7.', ' Lamanya Perjalanan Dinas',""));
         $this->Row(Array('', 'a. Tanggal berangkat', $singleData->tgl_pergi));
         $this->Row(Array('', 'b. Tanggal harus kembali', $singleData->tgl_kembali));
-        $this->Row(Array('8.', 'Pengikut / NIP', '1. Suparno / 19731103 199803 1 012  2. Yahya Fathoni Amri, S.Kom. / -'));
+        $this->Row(Array('8.', 'Pengikut / NIP', $pengikut));
         $this->Row(Array('9.', 'Pembebanan Anggaran', ''));
         $this->Row(Array('', 'a. Instansi', $singleData->instansi));
         $this->Row(Array('', 'b. Mata Anggaran', "Rp. ".$singleData->mata_anggaran));
@@ -605,7 +625,7 @@ class PdfController extends Controller
     }
 
     // Surat Perintah Tugas
-    public function index()
+    public function pdf1()
     {
         $this->fpdf->SetMargins(20, 7.5, 20);
         $this->fpdf->AddPage('P', array(210, 330));
