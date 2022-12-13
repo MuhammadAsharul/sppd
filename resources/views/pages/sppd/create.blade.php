@@ -115,6 +115,9 @@
                                             <button id="add-pengikut-button" type="button" class="btn btn-success">
                                                 <i class="mdi mdi-plus"></i>
                                             </button>
+                                            <button id="remove-pengikut-button" type="button" class="btn btn-danger">
+                                                <i class="mdi mdi-minus"></i>
+                                            </button>
                                         </div>
                                     </div>
                                     <div id="pengikut-wrapper">
@@ -129,37 +132,6 @@
                                             </select>
                                         </div>
                                     </div>
-                                    
-                                    {{-- <div class="form-group">
-                                        <label>Pengikut Satu</label>
-                                        <select class="js-example-basic-multiple w-100" name="pengikut_satu"
-                                            id="pengikut_satu">
-                                            <option value="">Pilih Salah Satu</option>
-                                            @foreach ($sppd as $s)
-                                                <option value="{{ $s->id }}">{{ $s->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Pengikut Dua <span style="color: red">*optional</span></label>
-                                        <select class="js-example-basic-multiple w-100" name="pengikut_dua"
-                                            id="pengikut_dua">
-                                            <option value="">Pilih Salah Satu</option>
-                                            @foreach ($sppd as $s)
-                                                <option value="{{ $s->id }}">{{ $s->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Pengikut Tiga <span style="color: red">*optional</span></label>
-                                        <select class="js-example-basic-multiple w-100" name="pengikut_tiga"
-                                            id="pengikut_tiga">
-                                            <option value="">Pilih Salah Satu</option>
-                                            @foreach ($sppd as $s)
-                                                <option value="{{ $s->id }}">{{ $s->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div> --}}
                                 </div>
                             </div>
                     </div>
@@ -177,6 +149,7 @@
 <script>
     const wrapperFields = document.querySelector('#pengikut-wrapper');
     const addPengikutButton = document.querySelector('#add-pengikut-button');
+    const removePengikutButton = document.querySelector('#remove-pengikut-button');
     const pengikuts = [];
 
     const template = (position) =>`<div class="form-group">
@@ -192,6 +165,15 @@
         const currentLength =  wrapperFields.children.length;
         console.log(wrapperFields)
         lastChild.insertAdjacentHTML('afterend', template(currentLength + 1));    
+    })
+
+    removePengikutButton.addEventListener('click', () => {
+        const lastChild = wrapperFields.querySelector('.form-group:last-child')
+        const currentLength =  wrapperFields.children.length;
+        console.log(wrapperFields)
+        if (currentLength != 1) {
+            lastChild.remove(template); 
+        }
     })
 </script>
 

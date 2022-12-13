@@ -35,12 +35,12 @@
                             <th rowspan="2">Tempat Tujuan</th>
                             <th rowspan="2">Tgl. Pergi</th>
                             <th rowspan="2">Tgl. Kembali</th>
-                            <th rowspan="2">Pengikut / NIP</th>
+                            <th rowspan="2">Pengikut - NIP</th>
                             <th colspan="2">Pembebanan Anggaran</th>
                             <th rowspan="2">Keterangan</th>
                             @guest()
                             @else
-                                <th rowspan="2">Aksi</th>
+                                <th rowspan="2" width=135px>Aksi</th>
                             @endguest
                         </tr>
                         <tr>
