@@ -36,8 +36,8 @@
                                     placeholder="Tulis Nama Pegawai">
                             </div>
                             <div class="form-group">
-                                <label for="id">NIP</label>
-                                <input type="text" class="form-control" name="id" id="id"
+                                <label for="nip">NIP</label>
+                                <input type="text" class="form-control" name="nip" id="nip"
                                     placeholder="Tulis NIP Pegawai">
                             </div>
                             <div class="form-group">

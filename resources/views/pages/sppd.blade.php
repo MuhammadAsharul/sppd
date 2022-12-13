@@ -63,7 +63,7 @@
                                 <td>{{ $s->tgl_kembali }}</td>
                                 <td>
                                     @foreach ($s->pengikut()->get() as $pengikut)
-                                        <div>{{ $loop->iteration }}. {{ $pengikut->name }} - {{ $pengikut->id }}</div>
+                                        <div>{{ $loop->iteration }}. {{ $pengikut->name }} - {{ $pengikut->nip }}</div>
                                     @endforeach
                                 </td>
                                 <td>{{ $s->instansi }}</td>

@@ -40,14 +40,14 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $s->kegiatan }}</td>
-                                <td>{{ $s->namaa->name }}</td>
+                                <td>{{ $s->namaa->name }} - {{ $s->namaa->nip }}</td>
                                 <td>{{ $s->lokasi }}</td>
                                 <td>{{ $s->hari_tgl }}</td>
                                 <td>{{ $s->rekening }}</td>
                                 <td>@currency($s->uang_harian)</td>
                                 <td> @currency($s->uang_transport)</td>
                                 <td> @currency($s->biaya_transport)</td>
-                                <td>@currency($s->uang_harian + $s->uang_transport+ $s->biaya_transport)</td>
+                                <td>@currency($s->uang_harian + $s->uang_transport + $s->biaya_transport)</td>
                                 @guest()
                                 @else
                                     <td class="text-center flex flex-row">

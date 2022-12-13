@@ -33,8 +33,8 @@
                             <th>Jabatan</th>
                             <th>Pangkat</th>
                             <th>Golongan</th>
-                                @guest()
-                                @else
+                            @guest()
+                            @else
                                 <th>Aksi</th>
                             @endguest
                         </tr>
@@ -44,7 +44,7 @@
                             @foreach ($pegawai as $p)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $p->id }}</td>
+                            <td>{{ $p->nip }}</td>
                             <td>{{ $p->name }}</td>
                             <td>{{ $p->jabatan }}</td>
                             <td>{{ $p->pangkat }}</td>

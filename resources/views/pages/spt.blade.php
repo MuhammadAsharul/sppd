@@ -45,7 +45,7 @@
                                 <td>{{ $s->dasar_perintah }}</td>
                                 <td>
                                     @foreach ($s->diperintah()->get() as $diperintah)
-                                        <div>{{ $loop->iteration }}. {{ $diperintah->name }} - {{ $diperintah->id }}</div>
+                                        <div>{{ $loop->iteration }}. {{ $diperintah->name }} - {{ $diperintah->nip }}</div>
                                     @endforeach
                                 </td>
                                 <td>{{ $s->maksud_tugas }}</td>
