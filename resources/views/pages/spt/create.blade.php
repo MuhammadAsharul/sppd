@@ -34,8 +34,9 @@
                                 <div class="col-md-6 grid-margin">
                                     <div class="form-group">
                                         <label for="dasar_perintah">Dasar Perintah</label>
-                                        <input type="text" class="form-control" id="dasar_perintah"
-                                            name="dasar_perintah" placeholder="Tulis Dasar Perintah">
+                                        <textarea type="text" class="form-control" id="dasar_perintah" cols="5"
+                                            name="dasar_perintah" placeholder="Tulis Dasar Perintah"></textarea>
+
                                     </div>
                                     <div class="form-group">
                                         <label for="hari_tgl">Hari/Tanggal</label>
@@ -46,8 +47,8 @@
                                 <div class="col-md-6 grid-margin">
                                     <div class="form-group">
                                         <label for="maksud_tugas">Maksud Tugas</label>
-                                        <input type="text" class="form-control" id="maksud_tugas" name="maksud_tugas"
-                                            placeholder="Tulis Maksud Tugas">
+                                        <textarea type="text" class="form-control" cols="5" id="maksud_tugas" name="maksud_tugas"
+                                            placeholder="Tulis Maksud Tugas"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="waktu">Waktu</label>

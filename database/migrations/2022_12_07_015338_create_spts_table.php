@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('spts', function (Blueprint $table) {
             $table->id();
-            $table->string('dasar_perintah', 100)->required();
-            $table->string('maksud_tugas', 100)->required();
+            $table->string('dasar_perintah')->required();
+            $table->string('maksud_tugas')->required();
             $table->date('hari_tgl', 100)->required();
-            $table->dateTime('waktu')->required();
+            $table->string('waktu')->required();
             $table->string('tempat')->required();
             $table->string('tempat_ditetapkan')->required();
             $table->date('tgl_ditetapkan')->required();
