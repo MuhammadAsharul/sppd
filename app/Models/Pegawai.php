@@ -29,10 +29,6 @@ class Pegawai extends Model
     {
         return $this->hasMany(Sppd::class, 'pejabat_diperintah');
     }
-    public function nama()
-    {
-        return $this->hasMany(Biaya::class, 'nama_pegawai');
-    }
 
     public function menetapkanpt()
     {

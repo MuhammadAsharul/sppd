@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('biayas', function (Blueprint $table) {
+        Schema::create('biaya_diperintah', function (Blueprint $table) {
             $table->id();
-            
+            $table->foreignId('biaya_id')->references('id')->on('biayas');
+            $table->foreignId('pegawai_id')->references('id')->on('pegawais');
+            $table->string('uang_harian')->nullable();
+            $table->string('uang_transport')->nullable();
+            $table->string('biaya_transport')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('biayas');
+        Schema::dropIfExists('biaya_namas');
     }
 };
