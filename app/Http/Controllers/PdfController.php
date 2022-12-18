@@ -424,7 +424,7 @@ class PDF_MC_Table extends FPDF
         $this->Row(Array('8.', 'Pengikut / NIP', $pengikut));
         $this->Row(Array('9.', 'Pembebanan Anggaran', ''));
         $this->Row(Array('', 'a. Instansi', $singleData->instansi));
-        $this->Row(Array('', 'b. Mata Anggaran', "Rp. ".$singleData->mata_anggaran));
+        $this->Row(Array('', 'b. Mata Anggaran', $singleData->mata_anggaran));
         $this->Row(Array('10.', 'Keterangan lain-lain', $singleData->keterangan));
         $this->Ln(10);
     }

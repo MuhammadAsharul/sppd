@@ -70,7 +70,7 @@
                                             <button id="add-diperintah-button" class="btn btn-success" type="button">
                                                 <i class="mdi mdi-plus"></i>
                                             </button>
-                                            <button id="remove-pengikut-button" type="button" class="btn btn-danger">
+                                            <button id="remove-diperintah-button" type="button" class="btn btn-danger">
                                                 <i class="mdi mdi-minus"></i>
                                             </button>
                                         </div>
@@ -130,7 +130,7 @@
 <script>
     const wrapperFields = document.querySelector('#diperintah-wrapper');
     const addPejabatButton = document.querySelector('#add-diperintah-button');
-    const removePengikutButton = document.querySelector('#remove-pengikut-button');
+    const removePengikutButton = document.querySelector('#remove-diperintah-button');
     const pejabats = [];
 
     const template = (position) =>`<div class="form-group">

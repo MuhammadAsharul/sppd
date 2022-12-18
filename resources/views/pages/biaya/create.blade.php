@@ -60,17 +60,17 @@
                                     <input type="text" class="form-control" id="rekening" name="rekening"
                                         placeholder="Tulis Nomor Rekening">
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="uang_harian">Uang Harian (Rp)</label>
                                     <input type="text" class="form-control" id="uang_harian" name="uang_harian"
                                         placeholder="Tulis Nominal Uang Harian">
-                                </div>
+                                </div> -->
                                 {{-- <div class="form-group">
                                     <label for="waktu">Waktu</label>
                                     <input type="time" value="{{Carbon\Carbon::now()->format('Y-m-d')."T".Carbon\Carbon::now()->format('H:i')}}" class="form-control" id="waktu" name="waktu"
                                         placeholder="Pilih Waktu Kepergian">
                                 </div> --}}
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="uang_transport">Uang Transport (Rp)</label>
                                     <input type="text" class="form-control" id="uang_transport" name="uang_transport"
                                         placeholder="Tulis Nominal Uang Transport">
@@ -79,6 +79,53 @@
                                     <label for="biaya_transport">Biaya Transport (Rp)</label>
                                     <input type="text" class="form-control" id="biaya_transport"
                                         name="biaya_transport" placeholder="Tulis Nominal Biaya Transport">
+                                </div> -->
+                                <div class="d-sm-flex justify-content-between align-items-center">
+                                    <div>
+                                        <label for=pejabatdiperintah>Pejabat yang Diperintah</label>
+                                    </div>
+                                    <div>
+                                        <button id="add-diperintah-button" type="button" class="btn btn-success">
+                                            <i class="mdi mdi-plus"></i>
+                                        </button>
+                                        <button id="remove-diperintah-button" type="button" class="btn btn-danger">
+                                            <i class="mdi mdi-minus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="diperintah-wrapper">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label>Pejabat Diperintah 1</label>
+                                                <select class="js-example-basic-multiple w-100" name="diperintah[]" id="diperintah">
+                                                    <option value="option">Pilih Salah Satu</option>
+                                                        <option value="option">Nama</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="uang_harian">Uang Harian (Rp) 1</label>
+                                                <input type="text" class="form-control" id="uang_harian" name="uang_harian"
+                                                    placeholder="Nominal Uang Harian">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="uang_transport">Uang Transport (Rp) 1</label>
+                                                <input type="text" class="form-control" id="uang_transport" name="uang_transport"
+                                                    placeholder="Nominal Uang Transport">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="biaya_transport">Biaya Transport (Lt) 1</label>
+                                                <input type="text" class="form-control" id="biaya_transport"
+                                                    name="biaya_transport" placeholder="Jumlah Liter BBM">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                     </div>
                     <div class="d-grid">
@@ -91,4 +138,35 @@
     </div>
     </div>
     </div>
+
+<script>
+    const wrapperFields = document.querySelector('#pengikut-wrapper');
+    const addDiperintahButton = document.querySelector('#add-diperintah-button');
+    const removeDiperintahButton = document.querySelector('#remove-diperintah-button');
+    const pengikuts = [];
+
+    const template = (position) =>`<div class="form-group">
+            <label>Pengikut ${position}</label>
+            <select class="js-example-basic-multiple w-100" name="pengikut[]"
+                id="pengikut">
+                <option value="opt">pot</option>
+            </select>
+        </div>`
+
+    addDiperintahButton.addEventListener('click', () => {
+        const lastChild = wrapperFields.querySelector('.form-group:last-child')
+        const currentLength =  wrapperFields.children.length;
+        console.log(wrapperFields)
+        lastChild.insertAdjacentHTML('afterend', template(currentLength + 1));    
+    })
+
+    removeDiperintahButton.addEventListener('click', () => {
+        const lastChild = wrapperFields.querySelector('.form-group:last-child')
+        const currentLength =  wrapperFields.children.length;
+        console.log(wrapperFields)
+        if (currentLength != 1) {
+            lastChild.remove(template); 
+        }
+    })
+</script>
 @endsection
