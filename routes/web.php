@@ -8,6 +8,7 @@ use App\Http\Controllers\BiayaController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InstansiController;
 
 use App\Http\Controllers\PdfController;
 
@@ -48,6 +49,7 @@ Route::resource('pegawai', PegawaiController::class)->middleware('auth');
 Route::resource('sppd', SppdController::class)->middleware('auth');
 Route::resource('spt', SptController::class)->middleware('auth');
 Route::resource('biaya', BiayaController::class)->middleware('auth');
+Route::resource('instansi', InstansiController::class)->middleware('auth');
 
 Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
 

@@ -34,8 +34,9 @@
                                 <div class="col-md-6 grid-margin">
                                     <div class="form-group">
                                         <label for="dasar_perintah">Dasar Perintah</label>
-                                        <input type="text" class="form-control" id="dasar_perintah"
-                                            name="dasar_perintah" placeholder="Tulis Dasar Perintah">
+                                        <textarea type="text" class="form-control" id="dasar_perintah" cols="5"
+                                            name="dasar_perintah" placeholder="Tulis Dasar Perintah"></textarea>
+
                                     </div>
                                     <div class="form-group">
                                         <label for="hari_tgl">Hari/Tanggal</label>
@@ -46,8 +47,8 @@
                                 <div class="col-md-6 grid-margin">
                                     <div class="form-group">
                                         <label for="maksud_tugas">Maksud Tugas</label>
-                                        <input type="text" class="form-control" id="maksud_tugas" name="maksud_tugas"
-                                            placeholder="Tulis Maksud Tugas">
+                                        <textarea type="text" class="form-control" cols="5" id="maksud_tugas" name="maksud_tugas"
+                                            placeholder="Tulis Maksud Tugas"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="waktu">Waktu</label>
@@ -69,7 +70,7 @@
                                             <button id="add-diperintah-button" class="btn btn-success" type="button">
                                                 <i class="mdi mdi-plus"></i>
                                             </button>
-                                            <button id="remove-pengikut-button" type="button" class="btn btn-danger">
+                                            <button id="remove-diperintah-button" type="button" class="btn btn-danger">
                                                 <i class="mdi mdi-minus"></i>
                                             </button>
                                         </div>
@@ -129,7 +130,7 @@
 <script>
     const wrapperFields = document.querySelector('#diperintah-wrapper');
     const addPejabatButton = document.querySelector('#add-diperintah-button');
-    const removePengikutButton = document.querySelector('#remove-pengikut-button');
+    const removePengikutButton = document.querySelector('#remove-diperintah-button');
     const pejabats = [];
 
     const template = (position) =>`<div class="form-group">
