@@ -9,9 +9,22 @@ use App\Models\Pegawai;
 class Biaya extends Model
 {
     use HasFactory;
-    protected $fillable = ['id', 'kegiatan', 'nama_pegawai', 'lokasi', 'hari_tgl', 'rekening', 'uang_harian', 'uang_transport', 'biaya_transport'];
-    public function namaa()
+    protected $fillable = ['id', 'kegiatan', 'lokasi', 'hari_tgl', 'rekening', 'uang_harian', 'uang_transport', 'biaya_transport'];
+    public function pegawaib()
     {
-        return $this->hasOne(Pegawai::class, 'id', 'nama_pegawai');
+        return $this->belongsToMany(Pegawai::class, 'biaya_diperintah');
+    }
+
+    public function uang_harian()
+    {
+        return $this->hasMany(Biaya::class, 'uang_harian');
+    }
+    public function uang_transport()
+    {
+        return $this->hasMany(Biaya::class, 'uang_transport');
+    }
+    public function biaya_transport()
+    {
+        return $this->hasMany(Biaya::class, 'biaya_transport');
     }
 }

@@ -27,7 +27,7 @@ class BiayaController extends Controller
      */
     public function create()
     {
-        $biaya = Pegawai::with('nama')->get();
+        $biaya = Pegawai::all();
         // dd($biaya);
         return view('pages.biaya.create', ['biaya' => $biaya]);
     }
@@ -42,26 +42,29 @@ class BiayaController extends Controller
     {
         $request->validate([
             'kegiatan' => 'required',
-            'nama_pegawai' => 'required',
             'lokasi' => 'required',
             'hari_tgl' => 'required',
             'rekening' => 'required',
-            'uang_harian' => 'required',
-            'uang_transport' => 'required',
-            'biaya_transport' => 'required',
+            'moreFields.*.uang_harian' => 'required',
+            'moreFields.*.uang_transport' => 'required',
+            'moreFields.*.biaya_transport' => 'required',
         ]);
 
         // dd($request->all());
         $biaya = Biaya::updateOrCreate([
             'kegiatan' => $request->kegiatan,
-            'nama_pegawai' => $request->nama_pegawai,
             'lokasi' => $request->lokasi,
             'hari_tgl' => $request->hari_tgl,
             'rekening' => $request->rekening,
-            'uang_harian' => $request->uang_harian,
-            'uang_transport' => $request->uang_transport,
-            'biaya_transport' => $request->biaya_transport,
+            'moreFields.*.uang_harian' => $request->uang_harian,
+            'moreFields.*.uang_transport' => $request->uang_transport,
+            'moreFields.*.biaya_transport' => $request->biaya_transport,
         ]);
+
+        foreach ($request->moreFields as $key => $value) {
+            Biaya::create($value);
+        }
+        $biaya->pegawaib()->sync($request->pegawaib);
         return redirect()->route('biaya.index')
             ->with('toast_success', 'Data Biaya Berhasil Ditambahkan');
     }
@@ -86,7 +89,7 @@ class BiayaController extends Controller
     public function edit($id)
     {
         $biaya = Biaya::findOrFail($id);
-        $pegawai = Pegawai::with('nama')->get();
+        $pegawai = Pegawai::all();
         return view('pages.biaya.edit', ['biaya' => $biaya, 'pegawai' => $pegawai]);
     }
 
@@ -99,6 +102,7 @@ class BiayaController extends Controller
      */
     public function update(Request $request, Biaya $biaya)
     {
+        $biaya->pegawaib()->sync($request->pegawaib);
         $biaya->update($request->all());
         return redirect()->route('biaya.index')
             ->with('toast_success', 'Data Biaya Berhasil Diupdate');
@@ -113,6 +117,10 @@ class BiayaController extends Controller
     public function destroy($id)
     {
         $biaya = Biaya::find($id);
+        $biaya->pegawaib()->sync([]);
+        $biaya->uang_harian()->sync([]);
+        $biaya->uang_transport()->sync([]);
+        $biaya->biaya_transport()->sync([]);
         $biaya->delete();
 
         return redirect()->route('biaya.index')

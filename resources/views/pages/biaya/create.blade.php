@@ -143,14 +143,40 @@
     var i = 1;
     $("#add-diperintah-button").click(function () {
         ++i;
-        $("#diperintah-wrapper").append('<div class="row '+i+'"><div class="col-4"><div class="form-group"><label>Pejabat Diperintah '+i+'</label><select class="js-example-basic-multiple w-100" name="diperintah[]" id="diperintah"><option value="">Pilih Salah Satu</option>@foreach ($biaya as $s)<option value="{{ $s->id }}">{{ $s->name }}</option>@endforeach</select></div></div><div class="col"><div class="form-group"><label for="uang_harian">Uang Harian (Rp) '+i+'</label><input type="text" class="form-control" id="uang_harian" name="multiInput['+i+'][uang_harian]" placeholder="Nominal Uang Harian"></div></div><div class="col"><div class="form-group"><label for="uang_transport">Uang Transport (Rp) '+i+'</label><input type="text" class="form-control" id="uang_transport" name="multiInput['+i+'][uang_transport]"placeholder="Nominal Uang Transport"></div></div><div class="col"><div class="form-group"><label for="biaya_transport">Biaya Transport (Lt) '+i+'</label><input type="text" class="form-control" id="biaya_transport" name="multiInput['+i+'][biaya_transport]" placeholder="Jumlah Liter BBM"></div></div></div>');
+        $("#diperintah-wrapper").append('<div class="row"><div class="col-4"><div class="form-group"><label>Pejabat Diperintah '+i+'</label><select class="js-example-basic-multiple w-100" name="diperintah[]" id="diperintah"><option value="">Pilih Salah Satu</option>@foreach ($biaya as $s)<option value="{{ $s->id }}">{{ $s->name }}</option>@endforeach</select></div></div><div class="col"><div class="form-group"><label for="uang_harian">Uang Harian (Rp) '+i+'</label><input type="text" class="form-control" id="uang_harian" name="multiInput['+i+'][uang_harian]" placeholder="Nominal Uang Harian"></div></div><div class="col"><div class="form-group"><label for="uang_transport">Uang Transport (Rp) '+i+'</label><input type="text" class="form-control" id="uang_transport" name="multiInput['+i+'][uang_transport]"placeholder="Nominal Uang Transport"></div></div><div class="col"><div class="form-group"><label for="biaya_transport">Biaya Transport (Lt) '+i+'</label><input type="text" class="form-control" id="biaya_transport" name="multiInput['+i+'][biaya_transport]" placeholder="Jumlah Liter BBM"></div></div></div>');
     });
     // $("#remove-diperintah-button").click(function () {
-    //     $(".i").empty();
     //     --i;
+    //     $("#diperintah-wrapper").remove();
     // });
     $(document).on('click', '#remove-diperintah-button', function () {
-        $(this).parents('i').remove();
+        $(this).parents('#diperintah-wrapper').remove();
     });
+</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+    /* Dengan Rupiah */
+    var dengan_rupiah = document.getElementById('uang_harian');
+    dengan_rupiah.addEventListener('keyup', function(e)
+    {
+        dengan_rupiah.value = formatRupiah(this.value, 'Rp. ');
+    });
+    
+    /* Fungsi */
+    function formatRupiah(angka, prefix)
+    {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split    = number_string.split(','),
+            sisa     = split[0].length % 3,
+            rupiah     = split[0].substr(0, sisa),
+            ribuan     = split[0].substr(sisa).match(/\d{3}/gi);
+            
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+        
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+    }
 </script>
 @endsection
