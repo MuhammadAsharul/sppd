@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pegawai;
 use App\Models\Instansi;
 use Illuminate\Http\Request;
 
@@ -15,9 +16,8 @@ class InstansiController extends Controller
     public function index()
     {
         $instansi = Instansi::latest()->paginate(10);
-
         return view('pages.instansi', compact('instansi'))
-            ->with('i', (request()->input('page', 1) - 1) * 50);
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -27,7 +27,9 @@ class InstansiController extends Controller
      */
     public function create()
     {
-        return view('pages.instansi.create');
+        $instansi = Pegawai::with(['kepala_dinass', 'pejabat_pelaksanaa', 'bendaharaa'])->get();
+        // dd($instansi);
+        return view('pages.instansi.create', ['instansi' => $instansi]);
     }
 
     /**
@@ -39,7 +41,6 @@ class InstansiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nip' => 'required| unique:pegawais',
             'nama' => 'required',
             'alamat' => 'required',
             'telepon' => 'required',
@@ -76,6 +77,7 @@ class InstansiController extends Controller
      */
     public function edit(Instansi $instansi)
     {
+        $instansi = Pegawai::with(['kepala_dinass', 'pejabat_pelaksanaa', 'bendaharaa'])->get();
         return view('pages.instansi.edit', compact('instansi'));
     }
 
@@ -89,7 +91,6 @@ class InstansiController extends Controller
     public function update(Request $request, Instansi $instansi)
     {
         $request->validate([
-            'nip' => 'required| unique:pegawais',
             'nama' => 'required',
             'alamat' => 'required',
             'telepon' => 'required',
