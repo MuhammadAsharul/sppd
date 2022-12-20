@@ -52,7 +52,7 @@
                                 @else
                                     <td class="text-center flex flex-row">
                                         <form action="{{ route('biaya.destroy', $s->id) }}" method="POST">
-                                            <a href="/pdf2/{{ $s->id }}" id="btn-show-biaya"
+                                            <a href="/pdf3/{{ $s->id }}" id="btn-show-biaya"
                                                 data-id="{{ $s->id }}" class="btn btn-primary btn-sm"><i
                                                     class="mdi mdi-printer"></i></a>
                                             <a href="{{ route('biaya.edit', $s->id) }}" id="btn-edit-biaya"
