@@ -39,7 +39,7 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 // pdf
 Route::get('/pdf1/{id}', [PdfController::class, 'pdf1']);
 Route::get('/pdf2/{id}', [PdfController::class, 'pdf2']);
-Route::get('/pdf3', [PdfController::class, 'pdf3']);
+Route::get('/pdf3/{id}', [PdfController::class, 'pdf3']);
 
 // contact me
 Route::get('contact-us', [ContactController::class, 'index']);
