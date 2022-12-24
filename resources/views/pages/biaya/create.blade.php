@@ -36,16 +36,6 @@
                                         placeholder="Tulis Kegiatan">
                                 </div>
                                 <div class="form-group">
-                                    <label for="nama_pegawai">Pejabat Pemberi Perintah</label>
-                                    <select class="js-example-basic-multiple w-100 form-control" name="nama_pegawai"
-                                        id="nama_pegawai">
-                                        <option value="">Pilih Salah Satu</option>
-                                        @foreach ($biaya as $s)
-                                            <option value="{{ $s->id }}">{{ $s->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
                                     <label for="lokasi">Lokasi</label>
                                     <input type="text" class="form-control" id="lokasi" name="lokasi"
                                         placeholder="Tulis Lokasi">
@@ -88,9 +78,6 @@
                                         <button id="add-diperintah-button" type="button" class="btn btn-success" value="add">
                                             <i class="mdi mdi-plus"></i>
                                         </button>
-                                        <button id="remove-diperintah-button" type="button" class="btn btn-danger" value="remove">
-                                            <i class="mdi mdi-minus"></i>
-                                        </button>
                                     </div>
                                 </div>
                                 <div id="diperintah-wrapper">
@@ -108,19 +95,19 @@
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
-                                                <label for="uang_harian">Uang Harian (Rp) 1</label>
+                                                <label for="uang_harian">Uang Harian (Rp)</label>
                                                 <input type="text" class="form-control" id="uang_harian" name="multiInput[0][uang_harian]" placeholder="Nominal Uang Harian">
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
-                                                <label for="uang_transport">Uang Transport (Rp) 1</label>
+                                                <label for="uang_transport">Uang Transport (Rp)</label>
                                                 <input type="text" class="form-control" id="uang_transport" name="multiInput[0][uang_transport]" placeholder="Nominal Uang Transport">
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
-                                                <label for="biaya_transport">Biaya Transport (Lt) 1</label>
+                                                <label for="biaya_transport">Biaya Transport (Lt)</label>
                                                 <input type="text" class="form-control" id="biaya_transport" name="multiInput[0][biaya_transport]" placeholder="Jumlah Liter BBM">
                                             </div>
                                         </div>
@@ -143,15 +130,17 @@
     var i = 1;
     $("#add-diperintah-button").click(function () {
         ++i;
-        $("#diperintah-wrapper").append('<div class="row"><div class="col-4"><div class="form-group"><label>Pejabat Diperintah '+i+'</label><select class="js-example-basic-multiple w-100" name="diperintah[]" id="diperintah"><option value="">Pilih Salah Satu</option>@foreach ($biaya as $s)<option value="{{ $s->id }}">{{ $s->name }}</option>@endforeach</select></div></div><div class="col"><div class="form-group"><label for="uang_harian">Uang Harian (Rp) '+i+'</label><input type="text" class="form-control" id="uang_harian" name="multiInput['+i+'][uang_harian]" placeholder="Nominal Uang Harian"></div></div><div class="col"><div class="form-group"><label for="uang_transport">Uang Transport (Rp) '+i+'</label><input type="text" class="form-control" id="uang_transport" name="multiInput['+i+'][uang_transport]"placeholder="Nominal Uang Transport"></div></div><div class="col"><div class="form-group"><label for="biaya_transport">Biaya Transport (Lt) '+i+'</label><input type="text" class="form-control" id="biaya_transport" name="multiInput['+i+'][biaya_transport]" placeholder="Jumlah Liter BBM"></div></div></div>');
+        $("#diperintah-wrapper").append('<div id="row'+i+'" class="row"><div class="col-4"><div class="form-group"><label>Pejabat Diperintah</label><select class="js-example-basic-multiple w-100" name="diperintah[]" id="diperintah"><option value="">Pilih Salah Satu</option>@foreach ($biaya as $s)<option value="{{ $s->id }}">{{ $s->name }}</option>@endforeach</select></div></div><div class="col"><div class="form-group"><label for="uang_harian">Uang Harian (Rp)</label><input type="text" class="form-control" id="uang_harian" name="multiInput['+i+'][uang_harian]" placeholder="Nominal Uang Harian"></div></div><div class="col"><div class="form-group"><label for="uang_transport">Uang Transport (Rp)</label><input type="text" class="form-control" id="uang_transport" name="multiInput['+i+'][uang_transport]"placeholder="Nominal Uang Transport"></div></div><div class="col"><div class="form-group"><label for="biaya_transport">Biaya Transport (Lt)</label><input type="text" class="form-control" id="biaya_transport" name="multiInput['+i+'][biaya_transport]" placeholder="Jumlah Liter BBM"></div></div><div class="col"><button id="'+i+'"" type="button" class="btn btn-danger btn_remove" value="remove"><i class="mdi mdi-minus"></i></button></div></div>');
     });
-    // $("#remove-diperintah-button").click(function () {
-    //     --i;
-    //     $("#diperintah-wrapper").remove();
+    // $(document).on('click', '#remove-diperintah-button', function () {
+    //     $(this).parents('#diperintah-wrapper').remove();
     // });
-    $(document).on('click', '#remove-diperintah-button', function () {
-        $(this).parents('#diperintah-wrapper').remove();
-    });
+
+    $(document).on('click', '.btn_remove', function(){  
+           var button_id = $(this).attr("id");
+           console.log(button_id);
+           $('#row'+button_id+'').remove();  
+      });  
 </script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
     /* Dengan Rupiah */

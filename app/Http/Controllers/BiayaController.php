@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Biaya;
 use App\Models\Pegawai;
+use Illuminate\Validation\Validator;
 use Illuminate\Http\Request;
 
 class BiayaController extends Controller
@@ -40,33 +41,58 @@ class BiayaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'kegiatan' => 'required',
-            'lokasi' => 'required',
-            'hari_tgl' => 'required',
-            'rekening' => 'required',
-            'moreFields.*.uang_harian' => 'required',
-            'moreFields.*.uang_transport' => 'required',
-            'moreFields.*.biaya_transport' => 'required',
-        ]);
+        // $request->validate([
+        //     'kegiatan' => 'required',
+        //     'lokasi' => 'required',
+        //     'hari_tgl' => 'required',
+        //     'rekening' => 'required',
+        //     'moreFields.*.uang_harian' => 'required',
+        //     'moreFields.*.uang_transport' => 'required',
+        //     'moreFields.*.biaya_transport' => 'required',
+        // ]);
 
-        // dd($request->all());
-        $biaya = Biaya::updateOrCreate([
-            'kegiatan' => $request->kegiatan,
-            'lokasi' => $request->lokasi,
-            'hari_tgl' => $request->hari_tgl,
-            'rekening' => $request->rekening,
-            'moreFields.*.uang_harian' => $request->uang_harian,
-            'moreFields.*.uang_transport' => $request->uang_transport,
-            'moreFields.*.biaya_transport' => $request->biaya_transport,
-        ]);
+        // // dd($request->all());
+        // $biaya = Biaya::updateOrCreate([
+        //     'kegiatan' => $request->kegiatan,
+        //     'lokasi' => $request->lokasi,
+        //     'hari_tgl' => $request->hari_tgl,
+        //     'rekening' => $request->rekening,
+        //     'moreFields.*.uang_harian' => $request->uang_harian,
+        //     'moreFields.*.uang_transport' => $request->uang_transport,
+        //     'moreFields.*.biaya_transport' => $request->biaya_transport,
+        // ]);
 
-        foreach ($request->moreFields as $key => $value) {
-            Biaya::create($value);
+        // foreach ($request->moreFields as $key => $value) {
+        //     Biaya::create($value);
+        // }
+        // $biaya->pegawaib()->sync($request->pegawaib);
+        // return redirect()->route('biaya.index')
+        //     ->with('toast_success', 'Data Biaya Berhasil Ditambahkan');
+
+        $rules = [];
+
+
+        foreach($request->input('name') as $key => $value) {
+            $rules["name.{$key}"] = 'required';
         }
-        $biaya->pegawaib()->sync($request->pegawaib);
-        return redirect()->route('biaya.index')
-            ->with('toast_success', 'Data Biaya Berhasil Ditambahkan');
+
+
+        $validator = Validator::make($request->all(), $rules);
+
+
+        if ($validator->passes()) {
+
+
+            foreach($request->input('name') as $key => $value) {
+                Biaya::create(['name'=>$value]);
+            }
+
+
+            return response()->json(['success'=>'done']);
+        }
+
+
+        return response()->json(['error'=>$validator->errors()->all()]);
     }
 
     /**

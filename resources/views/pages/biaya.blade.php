@@ -40,7 +40,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $s->kegiatan }}</td>
-                                <td>{{ $s->namaa->name }} - {{ $s->namaa->nip }}</td>
+                                {{-- <td>{{ $s->namaa->name }} - {{ $s->namaa->nip }}</td> --}}
                                 <td>{{ $s->lokasi }}</td>
                                 <td>{{ $s->hari_tgl }}</td>
                                 <td>{{ $s->rekening }}</td>
