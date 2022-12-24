@@ -1,82 +1,94 @@
 @extends('index')
-@section('title', 'Daftar Data Instansi')
+@section('title', 'Daftar Data Pegawai')
 @section('content')
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
         </div>
     @endif
-    <div class="card">
+    <div class="card ">
         <div class="card-body">
             <div class="d-sm-flex justify-content-between align-items-center">
                 <div>
-                    <h4 class="card-title">Daftar Data Instansi</h4>
+                    <h4 class="card-title">Daftar Data Pegawai</h4>
                 </div>
                 <div>
-                    @guest()
+                    {{-- @guest()
                     @else
-                        <a href="{{ route('instansi.create') }}">
+                        <a href="{{ route('pegawai.create') }}">
                             <button type="button" class="btn btn-success btn-md">
                                 Tambah Data
                             </button>
                         </a>
-                    @endguest
+                    @endguest --}}
                 </div>
             </div>
-            <div class="mt-3">
-                <form class="forms-sample" action="{{ route('instansi.store') }}" method="POST">
-                    @csrf
-                    <div class="form-group">
-                        <label for="nama">Nama Instansi</label>
-                        <input type="text" class="form-control" name="name" id="name"
-                            placeholder="Dinas Komunikasi dan Informatika" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="alamat">Alamat</label>
-                        <input type="text" class="form-control" name="alamat" id="alamat"
-                            placeholder="Jl. Lawu No. 385 B Karanganyar" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="telepon">Telepon</label>
-                        <input type="text" class="form-control" name="telepon" id="telepon" placeholder="(0271) 495039"
-                            disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="faks">Faksimile</label>
-                        <input type="text" class="form-control" name="faks" id="faks" placeholder="(0271) 495590"
-                            disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="website">Website</label>
-                        <input type="text" class="form-control" name="website" id="website"
-                            placeholder="www.karanganyarkab.go.id" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="text" class="form-control" name="email" id="email"
-                            placeholder="diskominfo@karanganyarkab.go.id" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="kodepos">Kode Pos</label>
-                        <input type="text" class="form-control" name="kodepos" id="kodepos" placeholder="57712"
-                            disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="kepala_dinas">Kepala Dinas</label>
-                        <select class="js-example-basic-multiple w-100" name="kepala_dinas" id="kepala_dinas">
-
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="pejabat_pelaksana">Pejabat Pelaksana</label>
-                        <select class="js-example-basic-multiple w-100" name="pejabat_pelaksana" id="pejabat_pelaksana">
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="bendahara">Bendahara</label>
-                        <select class="js-example-basic-multiple w-100" name="bendahara" id="bendahara">
-                        </select>
-                    </div>
+            <div class="table-responsive mt-3">
+                <table class="table table-striped table-bordered" id="pegawai">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Alamat</th>
+                            <th>Telepon</th>
+                            <th>Faksimile</th>
+                            <th>Website</th>
+                            <th>Email</th>
+                            <th>Kode Pos</th>
+                            <th>Kepala Dinas</th>
+                            <th>Pejabat Pelaksana</th>
+                            <th>Bendahara</th>
+                            @guest()
+                            @else
+                                <th width=135px>Aksi</th>
+                            @endguest
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            @foreach ($instansi as $p)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $p->nama }}</td>
+                            <td>{{ $p->alamat }}</td>
+                            <td>{{ $p->telepon }}</td>
+                            <td>{{ $p->faksimile }}</td>
+                            <td>{{ $p->website }}</td>
+                            <td>{{ $p->email }}</td>
+                            <td>{{ $p->kodepos }}</td>
+                            <td>{{ $p->kepalaa_dinas->name }} - {{ $p->kepalaa_dinas->nip }}</td>
+                            <td>{{ $p->pejabatt_pelaksana->name }} - {{ $p->pejabatt_pelaksana->nip }}</td>
+                            <td>{{ $p->bendaharas->name }} - {{ $p->bendaharas->nip }}</td>
+                            @guest()
+                            @else
+                                <td class="text-center flex flex-row">
+                                    <a href="{{ route('instansi.edit', $p->id) }}" id="btn-edit-instansi"
+                                        data-id="{{ $p->id }}" class="btn btn-warning btn-sm"><i
+                                            class="mdi mdi-tooltip-edit"></i></a>
+                                    {{-- <form action="{{ route('instansi.destroy', $p->id) }}" method="POST"> --}}
+                                    {{-- <a href="{{ route('instansi.show', $p->id) }}" id="btn-show-instansi"
+                                            data-id="{{ $p->id }}" class="btn btn-primary btn-sm"><i
+                                                class="mdi mdi-printer"></i></a> --}}
+                                    {{-- @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger  btn-sm"><i
+                                                class="mdi mdi-delete"></i></button> --}}
+                                    {{-- <form method="POST" action="{{ route('instansi.destroy', $p->id) }} ">
+                                        {{ csrf_field() }}
+                                        {{ method_field('delete') }}
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <button type="submit" class="btn btn-danger btn-sm show_confirm"><i
+                                                class="mdi mdi-delete"></i></button>
+                                    </form> --}}
+                                    {{-- </form> --}}
+                                </td>
+                            @endguest
+                        </tr>
+                        @endforeach
+                        </tr>
+                    </tbody>
+                </table>
+                {{-- {!! $pegawai->withQueryString()->links('pagination::bootstrap-5') !!} --}}
             </div>
         </div>
     </div>

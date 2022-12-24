@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('telepon')->required()->default('(0271) 495039');
             $table->string('faksimile')->required()->default('(0271) 495590');
             $table->string('website')->required()->default('www.karanganyarkab.go.id');
-            $table->string('email')->required()->default('www.karanganyarkab.go.id');
+            $table->string('email')->required()->default('diskominfo@karanganyarkab.go.id');
             $table->integer('kodepos')->required()->default('57712');
             $table->foreignId('kepala_dinas')->references('id')->on('pegawais')->onDelete('restrict');
             $table->foreignId('pejabat_pelaksana')->references('id')->on('pegawais')->onDelete('restrict');

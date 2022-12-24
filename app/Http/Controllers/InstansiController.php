@@ -75,10 +75,11 @@ class InstansiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Instansi $instansi)
+    public function edit($id)
     {
-        $instansi = Pegawai::with(['kepala_dinass', 'pejabat_pelaksanaa', 'bendaharaa'])->get();
-        return view('pages.instansi.edit', compact('instansi'));
+        $instansi = Instansi::findOrFail($id);
+        $pegawai = Pegawai::with(['kepala_dinass', 'pejabat_pelaksanaa', 'bendaharaa'])->get();
+        return view('pages.instansi.edit', ['instansi' => $instansi, 'pegawai' => $pegawai]);
     }
 
     /**
