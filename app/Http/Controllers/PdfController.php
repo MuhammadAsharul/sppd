@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Models\Sppd;
+use App\Models\Spt;
 use App\Models\Pegawai;
 use App\Models\Biaya;
-use App\Models\instansi;
+use App\Models\Instansi;
 use Codedge\Fpdf\Fpdf\Fpdf;
-use App\Models\Spt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use App\Http\Controllers\SppdController;
@@ -221,21 +221,22 @@ class PDF_MC_Table extends FPDF
         $this->SetTextColor(0);
     }
 
-    function Kop($h1, $h2, $h3, $h4)
+    function Kop()
     {
+        $InstansiData = Instansi::get();
         // Kop
         $this->Image('https://sippn.menpan.go.id/images/article/large/karanganyar-logo1.png', 10, 7.5, 24, 26.7, 'PNG');
         $this->SetFont('Arial', 'B', 14);
         $this->Cell(25, 7, "", 0, 0, "C");
-        $this->Cell(0, 7, $h1, 0, 1, "C");
+        $this->Cell(0, 7, "PEMERINTAH KABUPATEN KARANGANYAR", 0, 1, "C");
         $this->SetFont('Arial', 'B', 18);
         $this->Cell(25, 7, "", 0, 0, "C");
-        $this->Cell(0, 7, $h2, 0, 1, "C");
+        $this->Cell(0, 7, $InstansiData[0]->nama, 0, 1, "C");
         $this->SetFont('Arial', '', 10);
         $this->Cell(25, 7, "", 0, 0, "C");
-        $this->Cell(0, 5, $h3, 0, 1, "C");
+        $this->Cell(0, 5,"Alamat : ".$InstansiData[0]->alamat."  Telepon ".$InstansiData[0]->telepon."   Faks. ".$InstansiData[0]->faksimile, 0, 1, "C");
         $this->Cell(25, 7, "", 0, 0, "C");
-        $this->Cell(0, 5, $h4, 0, 1, "C");
+        $this->Cell(0, 5,"Website : ".$InstansiData[0]->website."   E-mail : ".$InstansiData[0]->email."   Kode Pos ".$InstansiData[0]->kodepos, 0, 1, "C");
 
         // Garis
         $this->SetLineWidth(1);
@@ -701,7 +702,7 @@ class PdfController extends Controller
         $this->fpdf->AddPage('P', array(210, 330));
 
         // Kop Surat dan Garis Dua
-        $this->fpdf->Kop("PEMERINTAH KABUPATEN KARANGANYAR", "DINAS KOMUNIKASI DAN INFORMATIKA", "Alamat : Jl. Lawu No. 385 B Karanganyar  Telepon (0271) 495039 ext. 228   Faks. (0271) 495590", "Website : www.karanganyarkab.go.id    E-mail : diskominfo@karanganyarkab.go.id   Kode Pos 57712");
+        $this->fpdf->Kop();
 
         // Judul Surat Perintah Tugas
         $this->fpdf->SetFont('Arial', 'BU', 12);
@@ -801,7 +802,7 @@ class PdfController extends Controller
         $this->fpdf->AddPage('P', array(210, 330));
 
         // Kop Surat dan Garis Dua
-        $this->fpdf->Kop("PEMERINTAH KABUPATEN KARANGANYAR", "DINAS KOMUNIKASI DAN INFORMATIKA", "Alamat : Jl. Lawu No. 385 B Karanganyar  Telepon (0271) 495039 ext. 228   Faks. (0271) 495590", "Website : www.karanganyarkab.go.id    E-mail : diskominfo@karanganyarkab.go.id   Kode Pos 57712");
+        $this->fpdf->Kop();
 
         // Lembar ke
         $this->fpdf->Lembar('......................', '......................', '......................');
@@ -822,7 +823,6 @@ class PdfController extends Controller
 
         // Tabel
         $this->fpdf->Tabel($id);
-        // $this->fpdf->Tabel('Plt. Kepala Dinas Komunikasi dan Informatika Kabupaten Karanganyar', 'Hartono, S.Sos., M.M. / 19691015 199003 1 007', 'Pembina / IV a', 'Kepala Bidang Tata Kelola Informatika', '-', 'Sarasehan dan Renungan Ulang Janji Hari Pramuka ke-61 Tahun 2022', 'Kendaraan Dinas', 'Karanganyar', 'Pendopo Tri Manunggal, Malanggaten, Kebakkramat', '', '13 Agustus 2022', '13 Agustus 2022', '', 'Dinas Kominfo Kabupaten Karanganyar', 'APBD TA 2022', '');
 
         // Tanda Tangan
         $this->fpdf->TTD("Karanganyar", "13 Agustus 2022", "U");
