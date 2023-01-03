@@ -53,23 +53,10 @@
                             @else
                                 <td class="text-center flex flex-row">
                                     <form action="{{ route('pegawai.destroy', $p->id) }}" method="POST">
-                                        <a href="{{ route('pegawai.show', $p->id) }}" id="btn-show-pegawai"
-                                            data-id="{{ $p->id }}" class="btn btn-primary btn-sm"><i
-                                                class="mdi mdi-printer"></i></a>
-                                        <a href="{{ route('pegawai.edit', $p->id) }}" id="btn-edit-pegawai"
-                                            data-id="{{ $p->id }}" class="btn btn-warning btn-sm"><i
-                                                class="mdi mdi-tooltip-edit"></i></a>
+                                        <a href="{{ route('pegawai.edit', $p->id) }}" id="btn-edit-pegawai" data-id="{{ $p->id }}" class="btn btn-warning btn-sm"><i class="mdi mdi-tooltip-edit"></i></a>
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger  btn-sm"><i
-                                                class="mdi mdi-delete"></i></button>
-                                        {{-- <form method="POST" action="{{ route('pegawai.destroy', $p->id) }} ">
-                                        {{ csrf_field() }}
-                                        {{ method_field('delete') }}
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <button type="submit" class="btn btn-danger btn-sm show_confirm"><i
-                                                class="mdi mdi-delete"></i></button>
-                                    </form> --}}
+                                        <button type="submit" class="btn btn-danger btn-sm"><i class="mdi mdi-delete"></i></button>
                                     </form>
                                 </td>
                             @endguest

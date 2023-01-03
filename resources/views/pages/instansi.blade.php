@@ -1,5 +1,5 @@
 @extends('index')
-@section('title', 'Daftar Data Pegawai')
+@section('title', 'Data Instansi')
 @section('content')
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
@@ -10,85 +10,96 @@
         <div class="card-body">
             <div class="d-sm-flex justify-content-between align-items-center">
                 <div>
-                    <h4 class="card-title">Daftar Data Pegawai</h4>
+                    <h4 class="card-title">Data Instansi</h4>
                 </div>
                 <div>
-                    {{-- @guest()
+                    @guest()
                     @else
-                        <a href="{{ route('pegawai.create') }}">
+                        <a href="">
                             <button type="button" class="btn btn-success btn-md">
-                                Tambah Data
+                                Ubah Data
                             </button>
                         </a>
-                    @endguest --}}
+                    @endguest
                 </div>
             </div>
-            <div class="table-responsive mt-3">
-                <table class="table table-striped table-bordered" id="pegawai">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>Alamat</th>
-                            <th>Telepon</th>
-                            <th>Faksimile</th>
-                            <th>Website</th>
-                            <th>Email</th>
-                            <th>Kode Pos</th>
-                            <th>Kepala Dinas</th>
-                            <th>Pejabat Pelaksana</th>
-                            <th>Bendahara</th>
-                            @guest()
-                            @else
-                                <th width=135px>Aksi</th>
-                            @endguest
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            @foreach ($instansi as $p)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $p->nama }}</td>
-                            <td>{{ $p->alamat }}</td>
-                            <td>{{ $p->telepon }}</td>
-                            <td>{{ $p->faksimile }}</td>
-                            <td>{{ $p->website }}</td>
-                            <td>{{ $p->email }}</td>
-                            <td>{{ $p->kodepos }}</td>
-                            <td>{{ $p->kepalaa_dinas->name }} - {{ $p->kepalaa_dinas->nip }}</td>
-                            <td>{{ $p->pejabatt_pelaksana->name }} - {{ $p->pejabatt_pelaksana->nip }}</td>
-                            <td>{{ $p->bendaharas->name }} - {{ $p->bendaharas->nip }}</td>
-                            @guest()
-                            @else
-                                <td class="text-center flex flex-row">
-                                    <a href="{{ route('instansi.edit', $p->id) }}" id="btn-edit-instansi"
-                                        data-id="{{ $p->id }}" class="btn btn-warning btn-sm"><i
-                                            class="mdi mdi-tooltip-edit"></i></a>
-                                    {{-- <form action="{{ route('instansi.destroy', $p->id) }}" method="POST"> --}}
-                                    {{-- <a href="{{ route('instansi.show', $p->id) }}" id="btn-show-instansi"
-                                            data-id="{{ $p->id }}" class="btn btn-primary btn-sm"><i
-                                                class="mdi mdi-printer"></i></a> --}}
-                                    {{-- @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger  btn-sm"><i
-                                                class="mdi mdi-delete"></i></button> --}}
-                                    {{-- <form method="POST" action="{{ route('instansi.destroy', $p->id) }} ">
-                                        {{ csrf_field() }}
-                                        {{ method_field('delete') }}
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <button type="submit" class="btn btn-danger btn-sm show_confirm"><i
-                                                class="mdi mdi-delete"></i></button>
-                                    </form> --}}
-                                    {{-- </form> --}}
-                                </td>
-                            @endguest
-                        </tr>
-                        @endforeach
-                        </tr>
-                    </tbody>
-                </table>
-                {{-- {!! $pegawai->withQueryString()->links('pagination::bootstrap-5') !!} --}}
+            <div class="mt-3">
+                <form class="forms-sample" action="{{ route('instansi.store') }}" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="nama">Nama Instansi</label>
+                            <input type="text" class="form-control" name="name" id="name" value="Dinas Komunikasi dan Informatika" disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="alamat">Alamat</label>
+                                <input type="text" class="form-control" name="alamat" id="alamat" value="Jl. Lawu No. 385 B Karanganyar" disabled>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="telepon">Telepon</label>
+                                <input type="text" class="form-control" name="telepon" id="telepon" value="(0271) 495039" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="website">Website</label>
+                                <input type="text" class="form-control" name="website" id="website" value="www.karanganyarkab.go.id" disabled>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="faks">Faksimile</label>
+                                <input type="text" class="form-control" name="faks" id="faks" value="(0271) 495590" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" name="email" id="email" value="diskominfo@karanganyarkab.go.id" disabled>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="kodepos">Kode Pos</label>
+                                <input type="text" class="form-control" name="kodepos" id="kodepos" value="57712" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="kepala_dinas">Kepala Dinas</label>
+                                <input type="text" class="form-control" name="kepala_dinas" id="kepala_dinas" value="Drs. Sujarno, M.Si." disabled>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="kepala_bidang">Kepala Bidang</label>
+                                <input type="text" class="form-control" name="kepala_bidang" id="kepala_bidang" value="Drs. Sujarno, M.Si." disabled>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="pejabat_pelaksana">Pejabat Pelaksana</label>
+                                <input type="text" class="form-control" name="pejabat_pelaksana" id="pejabat_pelaksana" value="Hartono, S.Sos., M.M." disabled>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="bendahara">Bendahara</label>
+                                <input type="text" class="form-control" name="bendahara" id="bendahara" value="Endang Werdiningsih, S.Sos." disabled>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>

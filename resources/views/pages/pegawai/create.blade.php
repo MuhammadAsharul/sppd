@@ -32,28 +32,23 @@
                             @csrf
                             <div class="form-group">
                                 <label for="nama">Nama</label>
-                                <input type="text" class="form-control" name="name" id="name"
-                                    placeholder="Tulis Nama Pegawai">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Tulis Nama Pegawai">
                             </div>
                             <div class="form-group">
                                 <label for="nip">NIP</label>
-                                <input type="text" class="form-control" name="nip" id="nip"
-                                    placeholder="Tulis NIP Pegawai">
+                                <input type="text" class="form-control" name="nip" id="nip" placeholder="Tulis NIP Pegawai">
                             </div>
                             <div class="form-group">
                                 <label for="jabatan">Jabatan</label>
-                                <input type="text" class="form-control" name="jabatan" id="jabatan"
-                                    placeholder="Tulis Jabatan Pegawai">
+                                <input type="text" class="form-control" name="jabatan" id="jabatan" placeholder="Tulis Jabatan Pegawai">
                             </div>
                             <div class="form-group">
                                 <label for="pangkat">Pangkat</label>
-                                <input type="text" class="form-control" name="pangkat" id="pangkat"
-                                    placeholder="Tulis Pangkat Pegawai">
+                                <input type="text" class="form-control" name="pangkat" id="pangkat" placeholder="Tulis Pangkat Pegawai">
                             </div>
                             <div class="form-group">
                                 <label for="golongan">Golongan</label>
-                                <input type="text" class="form-control" name="golongan" id="golongan"
-                                    placeholder="Tulis Golongan Pegawai">
+                                <input type="text" class="form-control" name="golongan" id="golongan" placeholder="Tulis Golongan Pegawai">
                             </div>
                     </div>
                     <div class="d-grid">

@@ -7,8 +7,6 @@
 </head>
 
 <body>
-
-
     <div class="container">
         <h1>Log Activity Lists</h1>
         <table class="table table-bordered">
@@ -36,8 +34,6 @@
             @endif
         </table>
     </div>
-
-
 </body>
 
 </html>

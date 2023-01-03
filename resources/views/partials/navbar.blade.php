@@ -20,8 +20,7 @@
             <li class="nav-item font-weight-semibold d-none d-lg-block ms-0 mt-2">
                 @guest()
                 @else
-                    <h1 class="welcome-text">Selamat Datang, <span
-                            class="text-black fw-bold">{{ Auth::user()->name }}</span>
+                    <h1 class="welcome-text">Selamat Datang, <span class="text-black fw-bold">{{ Auth::user()->name }}</span>
                     </h1>
                 @endguest
             </li>
@@ -49,19 +48,16 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                         <div class="dropdown-header text-center">
-                            <img class="img-md rounded-circle" src="{{ url('images/faces/face8.jpg') }}"
-                                alt="Profile image">
+                            <img class="img-md rounded-circle" src="{{ url('images/faces/face8.jpg') }}" alt="Profile image">
                             <p class="mb-1 mt-3 font-weight-semibold">{{ Auth::user()->name }}</p>
                             <p class="fw-light text-muted mb-0">{{ Auth::user()->email }}</p>
                         </div>
-                        <a href="{{ route('logout') }}" class="dropdown-item"><i
-                                class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Keluar</a>
+                        <a href="{{ route('logout') }}" class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Keluar</a>
                     @endguest
                 </div>
             </li>
         </ul>
-        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-            data-bs-toggle="offcanvas">
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
             <span class="mdi mdi-menu"></span>
         </button>
     </div>

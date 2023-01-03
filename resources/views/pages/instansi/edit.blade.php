@@ -12,8 +12,10 @@
                         {{-- <div>
                             @guest()
                             @else
-                                <a href="{{ route('') }}" class="btn btn-success btn-md">
-                                    <i class="mdi mdi-tooltip-edit"></i>
+                                <a href="{{ route('instansi.index') }}">
+                                    <button type="button" class="btn btn-dark">
+                                        <i class="mdi mdi-arrow-left"></i>
+                                    </button>
                                 </a>
                             @endguest
                         </div> --}}
@@ -32,71 +34,100 @@
                         <form class="forms-sample" action="{{ route('instansi.update', $instansi->id) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <div class="form-group">
-                                <label for="nama">Nama Instansi</label>
-                                <input value="{{ $instansi->nama }}" type="text" class="form-control" name="nama"
-                                    id="nama" placeholder="Dinas Komunikasi dan Informatika">
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="nama">Nama Instansi</label>
+                                    <input type="text" class="form-control" name="name" id="name" value="{{ $instansi->nama }}">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="alamat">Alamat</label>
-                                <input value="{{ $instansi->alamat }}" type="text" class="form-control" name="alamat"
-                                    id="alamat" placeholder="Jl. Lawu No. 385 B Karanganyar">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="alamat">Alamat</label>
+                                        <input type="text" class="form-control" name="alamat" id="alamat" value="{{ $instansi->alamat }}">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="telepon">Telepon</label>
+                                        <input type="text" class="form-control" name="telepon" id="telepon" value="{{ $instansi->telepon }}">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="telepon">Telepon</label>
-                                <input value="{{ $instansi->telepon }}" type="text" class="form-control" name="telepon"
-                                    id="telepon" placeholder="(0271) 495039">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="website">Website</label>
+                                        <input type="text" class="form-control" name="website" id="website" value="{{ $instansi->website }}">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="faks">Faksimile</label>
+                                        <input type="text" class="form-control" name="faks" id="faks" value="{{ $instansi->faksimile }}">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="faks">Faksimile</label>
-                                <input value="{{ $instansi->faksimile }}" type="text" class="form-control"
-                                    name="faksimile" id="faksimile" placeholder="(0271) 495590">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="text" class="form-control" name="email" id="email" value="{{ $instansi->email }}">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="kodepos">Kode Pos</label>
+                                        <input type="text" class="form-control" name="kodepos" id="kodepos" value="{{ $instansi->kodepos }}">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="website">Website</label>
-                                <input value="{{ $instansi->website }}" type="text" class="form-control" name="website"
-                                    id="website" placeholder="www.karanganyarkab.go.id">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input value="{{ $instansi->email }}" type="text" class="form-control" name="email"
-                                    id="email" placeholder="diskominfo@karanganyarkab.go.id">
-                            </div>
-                            <div class="form-group">
-                                <label for="kodepos">Kode Pos</label>
-                                <input value="{{ $instansi->kodepos }}" type="text" class="form-control" name="kodepos"
-                                    id="kodepos" placeholder="57712">
-                            </div>
-                            <div class="form-group">
-                                <label for="kepala_dinas">Kepala Dinas</label>
-                                <select class="js-example-basic-multiple w-100" name="kepala_dinas" id="kepala_dinas">
-                                    <option value="">Pilih Salah Satu</option>
-                                    @foreach ($pegawai as $s)
-                                        <option {{ $s->id == $instansi->kepala_dinas ? 'selected' : '' }}
-                                            value="{{ $s->id }}">{{ $s->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="pejabat_pelaksana">Pejabat Pelaksana</label>
-                                <select class="js-example-basic-multiple w-100" name="pejabat_pelaksana"
-                                    id="pejabat_pelaksana">
-                                    <option value="">Pilih Salah Satu</option>
-                                    @foreach ($pegawai as $s)
-                                        <option {{ $s->id == $instansi->pejabat_pelaksana ? 'selected' : '' }}
-                                            value="{{ $s->id }}">{{ $s->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="bendahara">Bendahara</label>
-                                <select class="js-example-basic-multiple w-100" name="bendahara" id="bendahara">
-                                    <option value="">Pilih Salah Satu</option>
-                                    @foreach ($pegawai as $s)
-                                        <option {{ $s->id == $instansi->bendahara ? 'selected' : '' }}
-                                            value="{{ $s->id }}">{{ $s->name }}</option>
-                                    @endforeach
-                                </select>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="kepala_dinas">Kepala Dinas</label>
+                                        <select class="js-example-basic-multiple w-100" name="kepala_dinas" id="kepala_dinas">
+                                            <option value="">Pilih Salah Satu</option>
+                                            @foreach ($pegawai as $s)
+                                                <option {{ $s->id == $instansi->kepala_dinas ? 'selected' : '' }} value="{{ $s->id }}">{{ $s->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="kepala_bidang">Kepala Bidang</label>
+                                        <select class="js-example-basic-multiple w-100" name="kepala_bidang" id="kepala_bidang">
+                                            <option value="">Pilih Salah Satu</option>
+                                            @foreach ($pegawai as $s)
+                                                <option {{ $s->id == $instansi->kepala_bidang ? 'selected' : '' }} value="{{ $s->id }}">{{ $s->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="pejabat_pelaksana">Pejabat Pelaksana</label>
+                                        <select class="js-example-basic-multiple w-100" name="pejabat_pelaksana"
+                                            id="pejabat_pelaksana">
+                                            <option value="">Pilih Salah Satu</option>
+                                            @foreach ($pegawai as $s)
+                                                <option {{ $s->id == $instansi->pejabat_pelaksana ? 'selected' : '' }} value="{{ $s->id }}">{{ $s->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="bendahara">Bendahara</label>
+                                        <select class="js-example-basic-multiple w-100" name="bendahara" id="bendahara">
+                                            <option value="">Pilih Salah Satu</option>
+                                            @foreach ($pegawai as $s)
+                                                <option {{ $s->id == $instansi->bendahara ? 'selected' : '' }} value="{{ $s->id }}">{{ $s->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                     </div>
                     <div class="d-grid">

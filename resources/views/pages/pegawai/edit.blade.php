@@ -33,28 +33,23 @@
                             @method('PUT')
                             <div class="form-group">
                                 <label for="nama">Nama</label>
-                                <input type="text" class="form-control" name="name" id="name"
-                                    value="{{ $pegawai->name }}" placeholder="Tulis Nama Pegawai">
+                                <input type="text" class="form-control" name="name" id="name" value="{{ $pegawai->name }}" placeholder="Tulis Nama Pegawai">
                             </div>
                             <div class="form-group">
                                 <label for="id">NIP</label>
-                                <input type="text" class="form-control" name="id" id="id"
-                                    value="{{ $pegawai->id }}" placeholder="Tulis NIP Pegawai">
+                                <input type="text" class="form-control" name="id" id="id" value="{{ $pegawai->id }}" placeholder="Tulis NIP Pegawai">
                             </div>
                             <div class="form-group">
                                 <label for="jabatan">Jabatan</label>
-                                <input type="text" class="form-control" name="jabatan" id="jabatan"
-                                    value="{{ $pegawai->jabatan }}" placeholder="Tulis Jabatan Pegawai">
+                                <input type="text" class="form-control" name="jabatan" id="jabatan" value="{{ $pegawai->jabatan }}" placeholder="Tulis Jabatan Pegawai">
                             </div>
                             <div class="form-group">
                                 <label for="pangkat">Pangkat</label>
-                                <input type="text" class="form-control" name="pangkat" id="pangkat"
-                                    value="{{ $pegawai->pangkat }}" placeholder="Tulis Pangkat Pegawai">
+                                <input type="text" class="form-control" name="pangkat" id="pangkat" value="{{ $pegawai->pangkat }}" placeholder="Tulis Pangkat Pegawai">
                             </div>
                             <div class="form-group">
                                 <label for="golongan">Golongan</label>
-                                <input type="text" class="form-control" name="golongan" id="golongan"
-                                    value="{{ $pegawai->golongan }}" placeholder="Tulis Golongan Pegawai">
+                                <input type="text" class="form-control" name="golongan" id="golongan" value="{{ $pegawai->golongan }}" placeholder="Tulis Golongan Pegawai">
                             </div>
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary me-2">Ubah</button>

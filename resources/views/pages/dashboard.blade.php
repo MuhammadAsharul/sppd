@@ -1,7 +1,6 @@
 @extends('index')
 @section('title', 'Dashboard')
 @section('content')
-
     <div class="row flex-grow">
         @if (session('success'))
             <div class="alert alert-success" role="alert">
@@ -11,7 +10,6 @@
         <div class="col-md-6 grid-margin stretch-card">
             <div class="card bg-primary card-rounded">
                 <div class="card-body pb-3">
-
                     <div class="row">
                         <div class="col">
                             <h4 class="card-title card-title-dash text-white mb-4">Data SPPD</h4>

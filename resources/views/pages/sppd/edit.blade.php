@@ -32,7 +32,7 @@
                             @csrf
                             @method('PUT')
                             <div class="row">
-                                <div class="col-md-6 grid-margin">
+                                <div class="col">
                                     <div class="form-group">
                                         <label for="pejabat_pemerintah">Pejabat Pemberi Perintah</label>
                                         <select class="js-example-basic-multiple w-100 form-control"
@@ -66,7 +66,7 @@
                                             placeholder="Tulis Transportasi yang Digunakan">
                                     </div>
                                 </div>
-                                <div class="col-md-6 grid-margin">
+                                <div class="col">
                                     <div class="form-group">
                                         <label for="pejabat_diperintah">Pegawai yang Diperintah</label>
                                         <select class="js-example-basic-multiple w-100"name="pejabat_diperintah"
@@ -101,7 +101,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md grid-margin">
+                                <div class="col">
                                     <div class="form-group">
                                         <label for="keterangan">Keterangan</label>
                                         <input value="{{ $sppd->keterangan }}" type="text" class="form-control" id="keterangan" name="keterangan"
@@ -110,7 +110,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md grid-margin">
+                                <div class="col">
                                     <div class="d-sm-flex justify-content-between align-items-center">
                                         <div>
                                             <label for=pengikut>Pengikut</label>
@@ -118,6 +118,9 @@
                                         <div>
                                             <button id="add-pengikutbutton" type="button" class="btn btn-success">
                                                 <i class="mdi mdi-plus"></i>
+                                            </button>
+                                            <button id="remove-pengikutbutton" type="button" class="btn btn-danger">
+                                                <i class="mdi mdi-minus"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -136,38 +139,6 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                    {{-- <div class="form-group">
-                                            <label>Pengikut Satu</label>
-                                            <select class="js-example-basic-multiple w-100" name="pengikut_satu"
-                                                id="pengikut_satu">
-                                                <option value="">Pilih Salah Satu</option>
-                                                @foreach ($sppd as $s)
-                                                    <option value="{{ $s->id }}">{{ $s->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Pengikut Dua <span style="color: red">*optional</span></label>
-                                            <select class="js-example-basic-multiple w-100" name="pengikut_dua"
-                                                id="pengikut_dua">
-                                                <option value="">Pilih Salah Satu</option>
-
-                                                @foreach ($sppd as $s)
-                                                    <option value="{{ $s->id }}">{{ $s->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Pengikut Tiga <span style="color: red">*optional</span></label>
-                                            <select class="js-example-basic-multiple w-100" name="pengikut_tiga"
-                                                id="pengikut_tiga">
-                                                <option value="">Pilih Salah Satu</option>
-                                                @foreach ($sppd as $s)
-                                                    <option value="{{ $s->id }}">{{ $s->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div> --}}
                                 </div>
                             </div>
                             <div class="d-grid">
@@ -184,6 +155,7 @@
 <script>
     const wrapperFields = document.querySelector('#pengikut-wrapper');
     const addPengikutButton = document.querySelector('#add-pengikutbutton');
+    const removePengikutButton = document.querySelector('#remove-pengikutbutton');
     const pengikuts = [];
 
     const template = (position) =>`<div class="form-group">
@@ -199,6 +171,15 @@
         const currentLength =  wrapperFields.children.length;
         console.log(wrapperFields)
         lastChild.insertAdjacentHTML('afterend', template(currentLength + 1));    
+    })
+
+    removePengikutButton.addEventListener('click', () => {
+        const lastChild = wrapperFields.querySelector('.form-group:last-child')
+        const currentLength =  wrapperFields.children.length;
+        console.log(wrapperFields)
+        if (currentLength != 1) {
+            lastChild.remove(template); 
+        }
     })
 </script>
 

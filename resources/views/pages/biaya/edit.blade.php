@@ -33,8 +33,7 @@
                             @method('PUT')
                                     <div class="form-group">
                                         <label for="kegiatan">Kegiatan</label>
-                                        <input value="{{ $biaya->kegiatan }}" type="text" class="form-control" id="kegiatan" name="kegiatan"
-                                            placeholder="Tulis Kegiatan">
+                                        <input value="{{ $biaya->kegiatan }}" type="text" class="form-control" id="kegiatan" name="kegiatan" placeholder="Tulis Kegiatan">
                                     </div>
                                     <div class="form-group">
                                         <label for="nama_pegawai">Pejabat Pemberi Perintah</label>
@@ -66,11 +65,6 @@
                                         <input value="{{ $biaya->uang_harian }}" type="text" class="form-control" id="uang_harian" name="uang_harian"
                                             placeholder="Tulis Nominal Uang Harian">
                                     </div>
-                                    {{-- <div class="form-group">
-                                        <label for="waktu">Waktu</label>
-                                        <input type="time" value="{{Carbon\Carbon::now()->format('Y-m-d')."T".Carbon\Carbon::now()->format('H:i')}}" class="form-control" id="waktu" name="waktu"
-                                            placeholder="Pilih Waktu Kepergian">
-                                    </div> --}}
                                     <div class="form-group">
                                         <label for="uang_transport">Uang Transport (Rp)</label>
                                         <input value="{{ $biaya->uang_transport }}" type="text" class="form-control" id="uang_transport" name="uang_transport"

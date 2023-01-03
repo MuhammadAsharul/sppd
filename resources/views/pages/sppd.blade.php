@@ -24,11 +24,7 @@
                         <tr>
                             <th rowspan="2">No</th>
                             <th rowspan="2">Pejabat Pemberi Perintah</th>
-                            {{-- <th rowspan="2">Jabatan</th> --}}
                             <th rowspan="2">Pegawai yang Diperintah</th>
-                            {{-- <th rowspan="2">Golongan</th>
-                            <th rowspan="2">Jabatan</th>
-                            <th rowspan="2">Tingkat</th> --}}
                             <th rowspan="2">Maksud Perjalanan Dinas</th>
                             <th rowspan="2">Transportasi</th>
                             <th rowspan="2">Tempat Berangkat</th>
@@ -53,7 +49,6 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $s->pejabat_pemerintahh->name }}</td>
-                                {{-- <td>{{ $s->pejabat_pemerintahh->golongan }}</td> --}}
                                 <td>{{ $s->pejabat_diperintahh->name }}</td>
                                 <td>{{ $s->maksud_perintah }}</td>
                                 <td>{{ $s->transportasi }}</td>
@@ -73,29 +68,16 @@
                                 @else
                                     <td class="text-center flex flex-row">
                                         <form action="{{ route('sppd.destroy', $s->id) }}" method="POST">
-                                            <a href="/pdf2/{{ $s->id }}" id="btn-show-sppd"
-                                                data-id="{{ $s->id }}" class="btn btn-primary btn-sm"><i
-                                                    class="mdi mdi-printer"></i></a>
-                                            <a href="{{ route('sppd.edit', $s->id) }}" id="btn-edit-sppd"
-                                                data-id="{{ $s->id }}" class="btn btn-warning btn-sm"><i
-                                                    class="mdi mdi-tooltip-edit"></i></a>
+                                            <a href="/pdf2/{{ $s->id }}" id="btn-show-sppd" data-id="{{ $s->id }}" class="btn btn-primary btn-sm"><i class="mdi mdi-printer"></i></a>
+                                            <a href="{{ route('sppd.edit', $s->id) }}" id="btn-edit-sppd" data-id="{{ $s->id }}" class="btn btn-warning btn-sm"><i class="mdi mdi-tooltip-edit"></i></a>
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger  btn-sm"><i
-                                                    class="mdi mdi-delete"></i></button>
-                                            {{-- <form method="POST" action="{{ route('pegawai.destroy', $p->id) }} ">
-                                        {{ csrf_field() }}
-                                        {{ method_field('delete') }}
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <button type="submit" class="btn btn-danger btn-sm show_confirm"><i
-                                                class="mdi mdi-delete"></i></button>
-                                    </form> --}}
+                                            <button type="submit" class="btn btn-danger  btn-sm"><i class="mdi mdi-delete"></i></button>
                                         </form>
                                     </td>
                                 @endguest
                             </tr>
                         @endforeach
-
                     </tbody>
                 </table>
             </div>

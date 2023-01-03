@@ -31,11 +31,10 @@
                         <form class="forms-sample" action="{{ route('sppd.store') }}" method="POST">
                             @csrf
                             <div class="row">
-                                <div class="col-md-6 grid-margin">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="pejabat_pemerintah">Pejabat Pemberi Perintah</label>
-                                        <select class="js-example-basic-multiple w-100 form-control"
-                                            name="pejabat_pemerintah" id="pejabat_pemerintah">
+                                        <select class="js-example-basic-multiple w-100 form-control" name="pejabat_pemerintah" id="pejabat_pemerintah">
                                             <option value="">Pilih Salah Satu</option>
                                             @foreach ($sppd as $s)
                                                 <option value="{{ $s->id }}">{{ $s->name }}</option>
@@ -44,30 +43,25 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="tempat_berangkat">Tempat Berangkat</label>
-                                        <input type="text" class="form-control" id="tempat_berangkat"
-                                            name="tempat_berangkat" placeholder="Tulis Tempat Keberangkatan">
+                                        <input type="text" class="form-control" id="tempat_berangkat" name="tempat_berangkat" placeholder="Tulis Tempat Keberangkatan">
                                     </div>
                                     <div class="form-group">
                                         <label for="tgl_pergi">Tanggal Pergi</label>
-                                        <input type="date" class="form-control" id="tgl_pergi" name="tgl_pergi"
-                                            placeholder="Pilih Tanggal Kepergian">
+                                        <input type="date" class="form-control" id="tgl_pergi" name="tgl_pergi" placeholder="Pilih Tanggal Kepergian">
                                     </div>
                                     <div class="form-group">
                                         <label for="maksud_perintah">Maksud Perjalanan Dinas</label>
-                                        <input type="text" class="form-control" id="maksud_perintah"
-                                            name="maksud_perintah" placeholder="Tulis Maksud Perjalanan Dinas">
+                                        <input type="text" class="form-control" id="maksud_perintah" name="maksud_perintah" placeholder="Tulis Maksud Perjalanan Dinas">
                                     </div>
                                     <div class="form-group">
                                         <label for="transportasi">Transportasi</label>
-                                        <input type="text" class="form-control" id="transportasi" name="transportasi"
-                                            placeholder="Tulis Transportasi yang Digunakan">
+                                        <input type="text" class="form-control" id="transportasi" name="transportasi" placeholder="Tulis Transportasi yang Digunakan">
                                     </div>
                                 </div>
-                                <div class="col-md-6 grid-margin">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="pejabat_diperintah">Pegawai yang Diperintah</label>
-                                        <select class="js-example-basic-multiple w-100"name="pejabat_diperintah"
-                                            id="pejabat_diperintah">
+                                        <select class="js-example-basic-multiple w-100" name="pejabat_diperintah" id="pejabat_diperintah">
                                             <option value="">Pilih Salah Satu</option>
                                             @foreach ($sppd as $s)
                                                 <option value="{{ $s->id }}">{{ $s->name }}</option>
@@ -76,37 +70,32 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="tempat_tujuan">Tempat Tujuan</label>
-                                        <input type="text" class="form-control" id="tempat_tujuan" name="tempat_tujuan"
-                                            placeholder="Tulis Tempat Tujuan">
+                                        <input type="text" class="form-control" id="tempat_tujuan" name="tempat_tujuan" placeholder="Tulis Tempat Tujuan">
                                     </div>
                                     <div class="form-group">
                                         <label for="tgl_kembali">Tanggal Kembali</label>
-                                        <input type="date" class="form-control" id="tgl_kembali" name="tgl_kembali"
-                                            placeholder="Pilih Tanggal Kembali">
+                                        <input type="date" class="form-control" id="tgl_kembali" name="tgl_kembali" placeholder="Pilih Tanggal Kembali">
                                     </div>
                                     <div class="form-group">
                                         <label for="instansi">Instansi</label>
-                                        <input type="text" class="form-control" id="instansi" name="instansi"
-                                            placeholder="Tulis Instansi">
+                                        <input type="text" class="form-control" id="instansi" name="instansi" placeholder="Tulis Instansi">
                                     </div>
                                     <div class="form-group">
                                         <label for="mata_anggaran">Mata Anggaran</label>
-                                        <input type="text" class="form-control" id="mata_anggaran" name="mata_anggaran"
-                                            placeholder="Tulis Mata Anggaran">
+                                        <input type="text" class="form-control" id="mata_anggaran" name="mata_anggaran" placeholder="Tulis Mata Anggaran">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md grid-margin">
+                                <div class="col">
                                     <div class="form-group">
                                         <label for="keterangan">Keterangan</label>
-                                        <input type="text" class="form-control" id="keterangan" name="keterangan"
-                                            placeholder="Tulis Keterangan">
+                                        <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Tulis Keterangan">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md grid-margin">
+                                <div class="col">
                                     <div class="d-sm-flex justify-content-between align-items-center">
                                         <div>
                                             <label for=pengikut>Pengikut</label>
@@ -123,8 +112,7 @@
                                     <div id="pengikut-wrapper">
                                         <div class="form-group">
                                             <label>Pengikut 1</label>
-                                            <select class="js-example-basic-multiple w-100" name="pengikut[]"
-                                                id="pengikut">
+                                            <select class="js-example-basic-multiple w-100" name="pengikut[]" id="pengikut">
                                                 <option value="">Pilih Salah Satu</option>
                                                 @foreach ($sppd as $s)
                                                     <option value="{{ $s->id }}">{{ $s->name }}</option>

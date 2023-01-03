@@ -31,35 +31,30 @@
                         <form class="forms-sample" action="{{ route('spt.store') }}" method="POST">
                             @csrf
                             <div class="row">
-                                <div class="col-md-6 grid-margin">
+                                <div class="col">
                                     <div class="form-group">
                                         <label for="dasar_perintah">Dasar Perintah</label>
-                                        <textarea type="text" class="form-control" id="dasar_perintah" cols="5"
-                                            name="dasar_perintah" placeholder="Tulis Dasar Perintah"></textarea>
+                                        <input type="text" class="form-control" id="dasar_perintah" name="dasar_perintah" placeholder="Tulis Dasar Perintah"></input>
 
                                     </div>
                                     <div class="form-group">
                                         <label for="hari_tgl">Hari/Tanggal</label>
-                                        <input type="date" class="form-control" id="hari_tgl" name="hari_tgl"
-                                            placeholder="Pilih Tanggal Kepergian">
+                                        <input type="date" class="form-control" id="hari_tgl" name="hari_tgl" placeholder="Pilih Tanggal Kepergian">
                                     </div>
                                 </div>
-                                <div class="col-md-6 grid-margin">
+                                <div class="col">
                                     <div class="form-group">
                                         <label for="maksud_tugas">Maksud Tugas</label>
-                                        <textarea type="text" class="form-control" cols="5" id="maksud_tugas" name="maksud_tugas"
-                                            placeholder="Tulis Maksud Tugas"></textarea>
+                                        <input type="text" class="form-control" id="maksud_tugas" name="maksud_tugas" placeholder="Tulis Maksud Tugas"></input>
                                     </div>
                                     <div class="form-group">
                                         <label for="waktu">Waktu</label>
-                                        <input type="time" value="{{Carbon\Carbon::now()->format('Y-m-d').'T'.Carbon\Carbon::now()->format('H:i')}}" class="form-control" id="waktu" name="waktu"
-                                            placeholder="Pilih Waktu Kepergian">
+                                        <input type="time" value="{{Carbon\Carbon::now()->format('Y-m-d').'T'.Carbon\Carbon::now()->format('H:i')}}" class="form-control" id="waktu" name="waktu" placeholder="Pilih Waktu Kepergian">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="tempat">Tempat</label>
-                                    <input type="text" class="form-control" id="tempat" name="tempat"
-                                        placeholder="Tulis Tempat">
+                                    <input type="text" class="form-control" id="tempat" name="tempat" placeholder="Tulis Tempat">
                                 </div>
                                 <div>
                                     <div class="d-sm-flex justify-content-between align-items-center">
@@ -90,24 +85,21 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 grid-margin">
+                                <div class="col">
                                     <div class="form-group">
                                         <label for="tempat_ditetapkan">Tempat Ditetapkan</label>
-                                        <input type="text" class="form-control" id="tempat_ditetapkan" name="tempat_ditetapkan"
-                                            placeholder="Tulis Tempat Ditetapkan">
+                                        <input type="text" class="form-control" id="tempat_ditetapkan" name="tempat_ditetapkan" placeholder="Tulis Tempat Ditetapkan">
                                     </div>
                                 </div>
-                                <div class="col-md-6 grid-margin">
+                                <div class="col">
                                     <div class="form-group">
                                         <label for="tgl_ditetapkan">Tanggal Ditetapkan</label>
-                                        <input type="date" class="form-control" id="tgl_ditetapkan" name="tgl_ditetapkan"
-                                            placeholder="Tulis Tanggal Ditetapkan">
+                                        <input type="date" class="form-control" id="tgl_ditetapkan" name="tgl_ditetapkan" placeholder="Tulis Tanggal Ditetapkan">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="yang_menetapkan">Petugas yang Menetapkan</label>
-                                    <select class="js-example-basic-multiple w-100 form-control"
-                                        name="yang_menetapkan" id="yang_menetapkan">
+                                    <select class="js-example-basic-multiple w-100 form-control" name="yang_menetapkan" id="yang_menetapkan">
                                         <option value="">Pilih Salah Satu</option>
                                         @foreach ($spt as $s)
                                             <option value="{{ $s->id }}">{{ $s->name }}</option>
